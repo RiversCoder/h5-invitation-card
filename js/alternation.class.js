@@ -143,9 +143,42 @@ class Alternation{
         //消失金属气球
         this.disappearBallon();
 
+        //消失黄色彩带
+        this.disappearColors();
+
+        //渐变消失飘落的彩带
+        this.disappearSmallPapers();
     }
 
-    
+
+    //渐变消失飘落的纸片
+    disappearSmallPapers(){
+        var items = this.tool.getItems('colorContainer','colorful-item');
+        //清理定时器
+        clearInterval(this.motion.colorSmallTimer);
+        for(var i=0;i<items.length;i++){
+            items[0].style['opacity'] = 1;
+        }
+    }   
+
+    //黄色彩带消失
+    disappearColors(){
+        var box = document.getElementById('colorContainer');
+        var colors = box.getElementsByClassName('colorful-box');
+
+        //清除位置运动定时器
+        window.clearInterval(this.motion.colorsTimer);
+
+        colors[0].style[this.tool.prefixBrowserVersion('transform')] = "translate3d(-150px, 280px, 15px)";
+        colors[1].style[this.tool.prefixBrowserVersion('transform')] = "translate3d(150px, -280px, 15px)";
+
+        for(var i=0;i<colors.length;i++){
+            colors[i].addEventListener('transitionend',function(){
+                this.style.display = 'none';
+            })
+        }
+    }   
+
     //金属球消失
     disappearBallon(){
         var box = document.getElementById('ribbonContainer');
@@ -153,18 +186,30 @@ class Alternation{
         var This = this;
 
         //动画对象
-        console.log(this.motion.ballTimer);
         window.clearInterval(this.motion.ballTimer);
         
         //退出动画
         for(var i=0;i<balls.length;i++){
-            balls[i].style[This.tool.prefixBrowserVersion('opacity')] = 0;
+            
+            //balls[i].style[This.tool.prefixBrowserVersion('opacity')] = 0;
             
             if(i == 0){
                 balls[i].style[This.tool.prefixBrowserVersion('transform')] = "translate3d(150px, 340px, 15px)";
             }else if(i == 1){
-                balls[i].style[This.tool.prefixBrowserVersion('transform')] = "translate3d(50px, 140px, 25px)";
+                balls[i].style[This.tool.prefixBrowserVersion('transform')] = "translate3d(750px, -150px, 25px)";
+            }else if(i == 2){
+                balls[i].style[This.tool.prefixBrowserVersion('transform')] = "translate3d(-250px, -140px, 25px)";
+            }else if(i == 3){
+                balls[i].style[This.tool.prefixBrowserVersion('transform')] = "translate3d(350px, -280px, 15px)";
+            }else if(i == 4){
+                balls[i].style[This.tool.prefixBrowserVersion('transform')] = "translate3d(-150px, -80px, 15px)";
+            }else if(i == 5){
+                balls[i].style[This.tool.prefixBrowserVersion('transform')] = "translate3d(200px, -200px, 15px)";
             }
+
+            balls[i].addEventListener('transitionend',function(){
+                this.style.display = 'none';
+            })
         }
     }
 

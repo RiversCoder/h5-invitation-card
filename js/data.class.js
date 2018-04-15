@@ -9,6 +9,50 @@ class Datas{
         return papers;
     }
 
+    getBalloons(){
+        let ballons = [{
+            w: 98,h: 131,src: './images/balloon/balloom_blue1.png'
+        },{
+            w: 71,h: 86,src: './images/balloon/balloom_blue2.png'
+        },{
+            w: 51,h: 61,src: './images/balloon/balloom_blue3.png'
+        },{
+            w: 107,h: 192,src: './images/balloon/balloom_golden1.png'
+        },{
+            w: 177,h: 313,src: './images/balloon/balloom_golden2.png'
+        },{
+            w: 283,h: 410,src: './images/balloon/balloom_golden3.png'
+        },{
+            w: 214,h: 334,src: './images/balloon/balloom_golden4.png'
+        },{
+            w: 116,h: 204,src: './images/balloon/balloom_golden5.png'
+        },{
+            w: 276,h: 209,src: './images/balloon/balloom_golden6.png'
+        },{
+            w: 213,h: 275,src: './images/balloon/balloom_golden7.png'
+        },{
+            w: 129,h: 233,src: './images/balloon/balloom_golden8.png'
+        },{
+            w: 129,h: 233,src: './images/balloon/balloom_golden8.png'
+        },{
+            w: 89,h: 152,src: './images/balloon/balloom_golden8.png'
+        },{
+            w: 89,h: 152,src: './images/balloon/balloom_green1.png'
+        },{
+            w: 70,h: 122,src: './images/balloon/balloom_green2.png'
+        },{
+            w: 70,h: 126,src: './images/balloon/balloom_green3.png'
+        },{
+            w: 67,h: 127,src: './images/balloon/balloom_yellow1.png'
+        },{
+            w: 130,h: 248,src: './images/balloon/balloom_yellow2.png'
+        },{
+            w: 99,h: 171,src: './images/balloon/balloom_yellow3.png'
+        }];
+
+        return ballons;
+    }
+
     getSlidePostions(){
         let postions = [{
             x1: 380, x2: 610},{

@@ -76,6 +76,13 @@ class Tool{
       }
     }
 
+    getItems(id,classname){
+        var box = document.getElementById(id);
+        var items = box.getElementsByClassName(classname);
+
+        return items;
+    }
+
 /*
     animate(elem,animation_name, count, delay,styles) {
         var x = elem;

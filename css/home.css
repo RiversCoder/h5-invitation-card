@@ -59,17 +59,44 @@ body {
   perspective: 1000;
   -webkit-perspective: 1000;
   perspective-origin: center center;
+  /* canvas box */
+  /* balloon box */
+  /* bannger card */
+}
+#container .gameWrapper .gameContent .logocanvasbox {
+  width: 2238.55421687px;
+  height: 995.18072289px;
+  position: absolute;
+  left: 50%;
+  margin-left: -1119.27710843px;
+  -webkit-box-shadow: 0 30px 150px #000000;
+  -moz-box-shadow: 0 30px 150px #000000;
+  -ms-box-shadow: 0 30px 150px #000000;
+  -o-box-shadow: 0 30px 150px #000000;
+  box-shadow: 0 30px 150px #000000;
+  background: #333;
+  z-index: 1;
+}
+#container .gameWrapper .gameContent .balloonbox {
+  width: 2238.55421687px;
+  height: 995.18072289px;
+  position: absolute;
+  left: 50%;
+  margin-left: -1119.27710843px;
+  z-index: 2;
+}
+#container .gameWrapper .gameContent .balloonbox .ballItem {
+  position: absolute;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  transition: 1.8s ease;
 }
 #container .gameWrapper .gameContent .cardbox {
   width: 2238.55421687px;
   height: 995.18072289px;
   position: relative;
   margin: 0 auto;
-  -webkit-box-shadow: 0 30px 150px #000000;
-  -moz-box-shadow: 0 30px 150px #000000;
-  -ms-box-shadow: 0 30px 150px #000000;
-  -o-box-shadow: 0 30px 150px #000000;
-  box-shadow: 0 30px 150px #000000;
+  z-index: 3;
   /* logo */
   /* banner background */
 }

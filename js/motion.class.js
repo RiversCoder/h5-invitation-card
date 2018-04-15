@@ -11,6 +11,8 @@ class Motion{
         this.datas = new Datas();
         this.timer = null;
         this.ballTimer = null;
+        this.colorsTimer = null;
+        this.colorSmallTimer = null;
         this.closeInterval = false;
         this.closeBallInterval = false;
         
@@ -55,6 +57,12 @@ class Motion{
 
         //6. 少量小彩带飘落
         this.smallColorsFalling();
+
+        //7. 初始化气球
+        this.initballons();
+
+        //8. 触发往上漂浮的气球
+        //this.flyballs();
     }
 
 
@@ -222,9 +230,7 @@ class Motion{
             }
 
             //清除定时器
-            if(This.closeInterval){
-                clearInterval(timer);
-            }
+            this.colorsTimer = clearInterval(timer);
         }
         //smove();
 
@@ -277,10 +283,47 @@ class Motion{
             }
         }
         
-        var timer = setInterval(randoms,3000);    
+        this.colorSmallTimer = setInterval(randoms,3000);    
     }
 
 
-    
+    //初始化气球
+    initballons(){
+        var box = document.getElementById('balloonbox');
+        var balls = this.datas.getBalloons();
+        var str = '';
+        var w = 0,h = 0,bg = '',l = 0,b = 0,time = 0;
+
+        for(var i=0;i<balls.length;i++){
+            w = Math.floor(balls[i].w/this.datas.multiple);
+            h = Math.floor(balls[i].h/this.datas.multiple);
+            l = Math.floor(Math.random()*( box.clientWidth - w));
+            b = Math.floor(Math.random()*30);
+            
+            time  = 2 + Math.random()*i*0.3;
+
+            str+= `<span class="ballItem ballItem${i}"  style="background-image:url('${balls[i].src}');width:${w}px;height:${h}px;left:${l}px;bottom:${b}px;transform:translate3d(0,0,0) rotate3d(0,0,1,0deg);transition:${time}s ease;"></span>`;
+        }
+
+        box.innerHTML = str;
+
+        //this.flyballs();
+    }
+
+
+    //气球往上飞
+    flyballs(){
+        var box = document.getElementById('balloonbox');
+        var balls = this.tool.getItems('balloonbox','ballItem');
+        var x = 0,y = 0,z = 0,a = 0;
+
+        for(var i=0;i<balls.length;i++){
+            x = Math.floor(box.offsetWidth*Math.random()*(Math.random()>0.5 ? 1 : -1));
+            y = -1*Math.floor(box.offsetHeight+500);
+            z = Math.floor(20*Math.random()*(Math.random()>0.5 ? 1 : -1));
+            a =  Math.floor(120*Math.random()*(Math.random()>0.5 ? 1 : -1));
+            balls[i].style[this.tool.prefixBrowserVersion('transform')] =`translate3d(${x}px,${y}px,${z}px) rotate3d(0,0,1,${a}deg)`;
+        }
+    }       
     
 }

@@ -108,6 +108,18 @@ html,body{width:100%;height:100%;}
     transform-style:preserve-3d;backface-visibility:hidden;transform-origin:center center;
 }
 
+.abCenterX(@width){
+    position: absolute;
+    left:50%;
+    margin-left:-@width/2/@rem;   
+}
+
+.abCenterY(@height){
+    position: absolute;
+    top:50%;
+    margin-top:-@height/2/@rem;   
+}
+
 body{background:#333;} /* 2041,907 */
 #container{
     .wh(2041,907);margin:0 auto;.bgColor(#821514);overflow:hidden;
@@ -118,9 +130,22 @@ body{background:#333;} /* 2041,907 */
         
         .gameContent{
             .fulled();position:relative;.perspective(1000);perspective-origin:center center;
+             
+            /* canvas box */
+            .logocanvasbox{
+                .wh(1858,826);.abCenterX(1858);.compatible(box-shadow,0 30px 150px #000);background:#333;z-index:1;
+            }
 
+            /* balloon box */
+            .balloonbox{
+                .wh(1858,826);.abCenterX(1858);z-index:2;
+
+                .ballItem{position:absolute;background-size:100% 100%;background-repeat:no-repeat;transition:1.8s ease;}
+            }
+
+            /* bannger card */
             .cardbox{
-                .wh(1858,826);position:relative;margin:0 auto;.compatible(box-shadow,0 30px 150px #000);
+                .wh(1858,826);position:relative;margin:0 auto;z-index:3;
                 
                 /* logo */
                 .boxLogo{.block;.wh(463,168);.bgImg('../images/DBS_logo_home.png');position:absolute;left:50%;margin-left:-231px;top:134px;z-index:10;.transform3d();transform:rotateX(0deg);opacity:0; 
