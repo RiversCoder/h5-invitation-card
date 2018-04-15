@@ -45,10 +45,12 @@ class Motion{
             clearTimeout(timer3);
         },900);
 
+
         //4. 球落下 大彩带飘落
         let timer4 = setTimeout(()=>{
             this.ribbonContainer();
             this.bigColorsFalling();
+            this.smallColorsFalling();
             clearTimeout(timer4);
         },3500);
         
@@ -56,13 +58,19 @@ class Motion{
         //this.bigColorsFalling();
 
         //6. 少量小彩带飘落
-        this.smallColorsFalling();
+        //this.smallColorsFalling();
 
         //7. 初始化气球
-        this.initballons();
+        //this.initballons();
 
         //8. 触发往上漂浮的气球
         //this.flyballs();
+        
+        //9. 触发向上折页
+        //this.cardbox();
+
+        //10. 播放粒子效果
+        //this.playcanvas();
     }
 
 
@@ -153,11 +161,16 @@ class Motion{
         {
             //tool.animate(balls[i],'bounceInDown',1,20 + 120*i,'opacity');
             balls[i].style[this.tool.prefixBrowserVersion('animation')] = "bounceInDowns "+(0.8 + i*0.2)+"s forwards";
-             balls[i].style[this.tool.prefixBrowserVersion('visibility')] = 'visible';
+            //balls[i].style[this.tool.prefixBrowserVersion('visibility')] = 'visible';
 
             //初始化默认的运动状态
-            balls[i].addEventListener('animationend',()=>{
-                balls[i].style.cssText = "opacity:1;transform: translate3d(0,0,0)";
+            balls[i].addEventListener('animationstart',()=>{
+                balls[i].style[This.tool.prefixBrowserVersion('opacity')] = 1;
+            });
+            balls[i].addEventListener('animationend',function(){
+                this.style.cssText = '';
+                this.style[This.tool.prefixBrowserVersion('opacity')] = 1;
+                this.style[This.tool.prefixBrowserVersion('transform')] = 'translate3d(0,0,0)';
             })
         }
 
@@ -173,16 +186,19 @@ class Motion{
                 randomY = Math.floor(150 * (Math.random()>0.5 ? -1 : 1)*Math.random());
                 randomZ = Math.floor(60 *Math.random());
 
-                
-                balls[i].style.cssText = "opacity:1;transform: translate3d("+randomX+"px,"+randomY+"px,"+randomZ+"px)";
+                balls[i].style[This.tool.prefixBrowserVersion('opacity')] = 1;
+                balls[i].style[This.tool.prefixBrowserVersion('transform')] = "translate3d("+randomX+"px,"+randomY+"px,"+randomZ+"px)";
             }
 
             
         }
 
-        //smove();
+        var btimer = setTimeout(function(){
+            smove();
+            clearTimeout(btimer);
+        },2000);
+
         this.ballTimer = setInterval(smove,5000);
-        console.log(this.ballTimer);
     }
 
 
@@ -210,8 +226,13 @@ class Motion{
             }
 
             //初始化默认的运动状态
+            colors[i].addEventListener('animationstart',()=>{
+                colors[i].style[this.tool.prefixBrowserVersion('opacity')] = 1;
+            })
             colors[i].addEventListener('animationend',()=>{
-                colors[i].style.cssText = "opacity:1;transform: translate3d(0,0,0)";
+                colors[i].style.cssText = '';
+                colors[i].style[this.tool.prefixBrowserVersion('opacity')] = 1;
+                colors[i].style[this.tool.prefixBrowserVersion('transform')] = 'translate3d(0,0,0)';
             })
         }
 
@@ -226,15 +247,14 @@ class Motion{
                 randomZ = Math.floor(230 * (Math.random()>0.5 ? -1 : 1)*Math.random());
 
                 
-                colors[i].style.cssText = "opacity:1;transform: translate3d("+randomX+"px,"+randomY+"px,"+randomZ+"px)";
+                colors[i].style[This.tool.prefixBrowserVersion('opacity')] = 1;
+                colors[i].style[This.tool.prefixBrowserVersion('transform')] = "translate3d("+randomX+"px,"+randomY+"px,"+randomZ+"px)";
             }
 
-            //清除定时器
-            this.colorsTimer = clearInterval(timer);
         }
         //smove();
 
-        var timer = setInterval(smove,4000);       
+        this.colorsTimer = setInterval(smove,4000);       
 
     }
 
@@ -256,7 +276,7 @@ class Motion{
         {
             childs[i].style[tool.prefixBrowserVersion('transform')] = "translate3d("+Math.floor(w*Math.random())+"px,"+ (0) +"px,0) rotate3d(0,0,1,0deg)";
             childs[i].style.width = Math.floor(arr[i].width/0.83) + 'px';
-            childs[i].style.height = Math.floor(arr[i].height/0.83) + 'px';
+            childs[i].style.height = Math.floor(arr[i].height/0.83 + 10*i) + 'px';
             childs[i].style.backgroundImage = "url("+arr[i].src+")"; 
         }
 
@@ -291,6 +311,7 @@ class Motion{
     initballons(){
         var box = document.getElementById('balloonbox');
         var balls = this.datas.getBalloons();
+        
         var str = '';
         var w = 0,h = 0,bg = '',l = 0,b = 0,time = 0;
 
@@ -300,14 +321,23 @@ class Motion{
             l = Math.floor(Math.random()*( box.clientWidth - w));
             b = Math.floor(Math.random()*30);
             
-            time  = 2 + Math.random()*i*0.3;
+            time  = 5 + Math.random()*i*0.3;
+
+            str+= `<span class="ballItem ballItem${i}"  style="background-image:url('${balls[i].src}');width:${w}px;height:${h}px;left:${l}px;bottom:${b}px;transform:translate3d(0,0,0) rotate3d(0,0,1,0deg);transition:${time}s ease;"></span>`;
+        }
+
+        for(var i=0;i<balls.length;i++){
+            w = Math.floor(balls[i].w/this.datas.multiple);
+            h = Math.floor(balls[i].h/this.datas.multiple);
+            l = Math.floor(Math.random()*( box.clientWidth - w));
+            b = -600 - Math.floor(Math.random()*30);
+            
+            time  = 5 + Math.random()*i*0.3;
 
             str+= `<span class="ballItem ballItem${i}"  style="background-image:url('${balls[i].src}');width:${w}px;height:${h}px;left:${l}px;bottom:${b}px;transform:translate3d(0,0,0) rotate3d(0,0,1,0deg);transition:${time}s ease;"></span>`;
         }
 
         box.innerHTML = str;
-
-        //this.flyballs();
     }
 
 
@@ -319,11 +349,62 @@ class Motion{
 
         for(var i=0;i<balls.length;i++){
             x = Math.floor(box.offsetWidth*Math.random()*(Math.random()>0.5 ? 1 : -1));
-            y = -1*Math.floor(box.offsetHeight+500);
+            if(i < balls.length/2){
+                y = -1*Math.floor(box.offsetHeight+300);
+            }else{
+                y = -1*Math.floor(box.offsetHeight+300) - 600;
+                if(y > - (box.offsetHeight - balls[i] )){
+                    y = - (box.offsetHeight - balls[i] ) - 100;
+                }
+            }
+            
             z = Math.floor(20*Math.random()*(Math.random()>0.5 ? 1 : -1));
             a =  Math.floor(120*Math.random()*(Math.random()>0.5 ? 1 : -1));
             balls[i].style[this.tool.prefixBrowserVersion('transform')] =`translate3d(${x}px,${y}px,${z}px) rotate3d(0,0,1,${a}deg)`;
         }
+    }
+
+    //翻转banner card
+    cardbox(){
+        var cardbox = document.getElementById('cardbox');
+        
+        cardbox.style[this.tool.prefixBrowserVersion('transition')] = "2.8s ease";
+        cardbox.style[this.tool.prefixBrowserVersion('transform')] = "rotate3d(1,0,0,90deg)"
     }       
     
+    //播放canvas    
+    playcanvas(){
+        
+        var box = document.getElementById('logocanvasbox');
+        var canvas = document.getElementById('logoparticle');
+        var video = document.getElementById('logoVideo');
+
+        var dur = video.duration;
+        var time = 0;
+        var timer = null;
+        var This = this;
+        var w = Math.ceil(1858/This.datas.multiple);
+        var h = Math.ceil(826/This.datas.multiple);
+        var ts = 20;
+
+        canvas.setAttribute('width',w);
+        canvas.setAttribute('height',h);
+
+        var ctx = canvas.getContext('2d');
+        video.play();
+        
+        video.addEventListener('play',function(){
+            dur = this.duration;
+            timer = setInterval(()=>{
+                time += ts;
+                if( time > 5400 ){
+                    clearInterval(timer);
+                    return;
+                }
+                ctx.drawImage(this,0,0,w,h);
+            },ts)
+        })
+
+       
+    }
 }

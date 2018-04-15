@@ -121,14 +121,13 @@ class Alternation{
         //检测是否运动结束
         for(var i=0;i<flowers.length;i++){
             flowers[i].addEventListener('transitionend',function(ev){
+                //开始执行退出运动动画
                evNum++;
-               if(evNum == flowers.length){
-                    //开始执行退出运动动画
+               if(evNum >= 3){
                     if(onoff){
-                        This.executeOutMotion();
-                        onoff = false;
-                    }
-                    
+                    This.executeOutMotion();
+                    onoff = false;
+                }
                }
             })
         }
@@ -148,6 +147,7 @@ class Alternation{
 
         //渐变消失飘落的彩带
         this.disappearSmallPapers();
+
     }
 
 
@@ -184,6 +184,7 @@ class Alternation{
         var box = document.getElementById('ribbonContainer');
         var balls = box.getElementsByClassName('rcItem');
         var This = this;
+        var num = 0;
 
         //动画对象
         window.clearInterval(this.motion.ballTimer);
@@ -207,10 +208,38 @@ class Alternation{
                 balls[i].style[This.tool.prefixBrowserVersion('transform')] = "translate3d(200px, -200px, 15px)";
             }
 
-            balls[i].addEventListener('transitionend',function(){
+            var timer = setTimeout(()=>{
+                This.backAnimation();
+                clearTimeout(timer);
+            },2000);
+
+            /*balls[i].addEventListener('transitionend',function(){
                 this.style.display = 'none';
-            })
+                num++;
+                if(num > 2){
+                    
+                }
+            })*/
         }
+    }
+
+    //后续动画
+    backAnimation(){
+        
+        //初始化气球位置
+        this.motion.initballons();
+        
+        //翻开动画
+        this.motion.cardbox();
+        
+        //气球上升动画
+        this.motion.flyballs();
+
+        var timer = setTimeout(()=>{
+            this.motion.playcanvas();
+            clearTimeout(timer);
+        },4500);
+
     }
 
 
@@ -220,6 +249,7 @@ class Alternation{
         var rX=0,rY=0,rA=0,i=0;
         var This = this;
         var motionAttr = {};
+        var This = this;
         //console.log(index.length);
         
         //同时超过三个手指滑动 或者 积累三个手指触控
@@ -243,49 +273,67 @@ class Alternation{
                     motionAttr = {rX: 10,rY: 230,rA: 80,time: 10,alpha: 0,delay: 0};
                     var centerIndex = index[0];
 
-                    for(var i=centerIndex;i>=-1;i--){
+                    movefn(centerIndex,flowers.length);
+                    /*for(var i=centerIndex;i>=-1;i--){
                         motionAttr = {rX: 10,rY: 460 - 30*(centerIndex-i),rA: 80,time: 3+2*(centerIndex-i),alpha: 0,delay:0+(centerIndex-i)*0.2};
                         motion(motionAttr,i+1,80);
                     }
                     for(var i=centerIndex+1;i<flowers.length;i++){
                         motionAttr = {rX: 10,rY: 460 - 30*(i-centerIndex),rA: 80,time: 3+2*i,alpha: 0,delay: 0+(i-centerIndex)*0.2};
                         motion(motionAttr,i,-80);
-                    }
+                    }*/
                 }
 
                 
                 //  对应index左右下的花朵单独处理
                 if(index.length == 2){
 
-                    var centerIndex = Math.ceil((index[0]+index[1])/2);
+                    var cIndex = Math.floor(flowers.length/2);
 
-                    if(index[0] < centerIndex){
-                       /* for(var i=index[0];i<=centerIndex;i++){
-                            motionAttr = {rX: 10,rY: 230,rA: 80,time: 10-2*(Math.random()*i),alpha: 0};
-                            motion(motionAttr,i,80);
+                    for(var i=0;i<index.length;i++){
+                        if(index[i] < cIndex){
+                            movefn1(index[i],cIndex);
+                        }else{
+                            movefn2(index[i],cIndex);
                         }
-                        for(var i=0;i<index[0];i++){
-                            motionAttr = {rX: 10,rY: 230,rA: -80,time: 10-2*(Math.random()*i),alpha: 0};
-                             motion(motionAttr,i,-80);
-                        }*/
-                    }else{
-                        /*for(var i=index[0];i<=centerIndex;i++){
-                            motionAttr = {rX: 10,rY: 230,rA: 80,time: 10+2*(Math.random()*i),alpha: 0};
-                        }
-                        for(var i=0;i<index[0];i++){
-                            motionAttr = {rX: 10,rY: 230,rA: 80,time: 15+2*(Math.random()*i),alpha: 0};
-                        }*/
                     }
 
                 }
-
-            //剩下的花缓慢旋转向下运动
-            /*for(i=0;i<remain.length;i++){
-                motionAttr = {rX: 10,rY: 50,rA: 30,time: 20,alpha: 1};
-                motion(motionAttr,remain[i]);
-            }*/
         }
 
+
+        function movefn(cur,end,basic){
+            for(var i=cur;i>=-1;i--){
+                motionAttr = {rX: 10,rY: 460 - 10*(cur-i),rA: 80,time: 1+2*(cur-i),alpha: 0,delay:0+(cur-i)*0.1};
+                motion(motionAttr,i+1,60);
+            }
+            for(var i=cur+1;i<end;i++){
+                motionAttr = {rX: 10,rY: 460 - 10*(i-cur),rA: 80,time: 1+2*i,alpha: 0,delay: 0+(i-cur)*0.1};
+                motion(motionAttr,i,-60);
+            }
+        }
+
+        function movefn1(cur,center,end){
+            for(var i=cur;i>=-1;i--){
+                motionAttr = {rX: 10,rY: 460 - 30*(cur-i),rA: 80,time: 3+2*(cur-i),alpha: 0,delay:0+(cur-i)*0.2};
+                motion(motionAttr,i+1,60);
+            }
+            for(var i=cur+1;i<end;i++){
+                motionAttr = {rX: 10,rY: 460 - 30*(i-cur),rA: 80,time: 3+2*i,alpha: 0,delay: 0+(i-cur)*0.2};
+                motion(motionAttr,i,-60);
+            }
+        }
+
+        function movefn2(cur,end){
+            for(var i=cur;i>=end-1;i--){
+                motionAttr = {rX: 10,rY: 460 - 30*(end-i),rA: 80,time: 3+2*Math.abs(end-i),alpha: 0,delay:0+Math.abs((end-i)*0.2)};
+                motion(motionAttr,i+1,60);
+            }
+            for(var i=cur+1;i<flowers.length;i++){
+                motionAttr = {rX: 10,rY: 460 - 30*(i-end),rA: 80,time: 3+2*(i-cur),alpha: 0,delay: 0+(i-end)*0.2};
+                motion(motionAttr,i,-60);
+            }
+        }
 
         function motion(obj,index,rrA){
            
@@ -303,8 +351,6 @@ class Alternation{
 
             flowers[index].style[This.tool.prefixBrowserVersion('opacity')]=  obj.alpha;
             flowers[index].style[This.tool.prefixBrowserVersion('transform')]=  'translate3d('+rX+'px,'+rY+'px,0) rotate3d(0,0,1,'+rA+'deg)';
-            
-            
         }
     }
 

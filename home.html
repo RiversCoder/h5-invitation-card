@@ -18,7 +18,13 @@
             <div class="gameContent" id="gameContent">
                 
                 <!-- logo canvas card -->    
-                <div class="logocanvasbox" id="logocanvasbox"></div>
+                <div class="logocanvasbox" id="logocanvasbox">
+                    <canvas id="logoparticle"></canvas>
+                    <video id="logoVideo" style="display: none;">
+                        <source src="./video/logo.mp4" type="video/mp4" />
+                        <source src="./video/logo.Ogg" type="video/ogg" />
+                    </video>
+                </div>
 
                 <!-- balloon box -->                
                 <div class="balloonbox" id="balloonbox">
@@ -27,7 +33,7 @@
                      
 
                 <!-- banner card box -->
-                <div class="cardbox" style="display:none;">
+                <div class="cardbox" id="cardbox">
                     <span class="boxLogo" id="boxLogo">
                         <i class="box-logo-light box-logo-light-1"></i>
                         <i class="box-logo-light box-logo-light-2"></i>
@@ -54,7 +60,7 @@
 
 
             <!-- 装饰物品 -->
-            <div class="otherContent" style="display:none;">
+            <div class="otherContent" >
 
                 <!-- 光球层 -->
                 <div class="ribbonContainer" id="ribbonContainer">
@@ -76,14 +82,14 @@
                 <div class="flowerContainer">
                     
                     <!-- 花带 example -->
-                    <div class="flowerExample"></div>
+                    <!-- <div class="flowerExample"></div> -->
                     
                     <!-- 花带 动画层 -->
                     <div class="flowerContent">
                         
                         
                         <!-- 静态分段隐藏层 -->
-                        <div class="fc-static-hide fc-static-show" id="fcStaticBox">
+                        <div class="fc-static-box" id="fcStaticBox">
                             <ul class="staticWrap">
                                 <li class="secItem secItem1"><image src="./images/flower_left.png"></li>
                                 <li class="secItem secItem2"><image src="./images/flower_middle1.png"></li>

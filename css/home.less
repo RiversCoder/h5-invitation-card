@@ -129,11 +129,19 @@ body{background:#333;} /* 2041,907 */
         .fulled();margin:0 auto;.bgImg('../images/red_bg.png');position:relative;overflow:hidden;
         
         .gameContent{
-            .fulled();position:relative;.perspective(1000);perspective-origin:center center;
+            .fulled();position:relative;.perspective(12000);perspective-origin:center center;
              
             /* canvas box */
             .logocanvasbox{
-                .wh(1858,826);.abCenterX(1858);.compatible(box-shadow,0 30px 150px #000);background:#333;z-index:1;
+                .wh(1858,826);.abCenterX(1858);.compatible(box-shadow,0 30px 150px #000);z-index:1;.bgImg('../images/black_bg_big@2x.png');
+                
+                /* canvas */
+                .logoparticle{
+                    .ab(0,0);.wh(1858,826);
+                }
+                
+                /* video */
+                .logoVideo{display: none;}
             }
 
             /* balloon box */
@@ -145,12 +153,12 @@ body{background:#333;} /* 2041,907 */
 
             /* bannger card */
             .cardbox{
-                .wh(1858,826);position:relative;margin:0 auto;z-index:3;
+                .wh(1858,826);position:relative;margin:0 auto;z-index:3;.transform3d();transform-origin:center 0;transform:rotate3d(0,0,0,0deg);
                 
                 /* logo */
-                .boxLogo{.block;.wh(463,168);.bgImg('../images/DBS_logo_home.png');position:absolute;left:50%;margin-left:-231px;top:134px;z-index:10;.transform3d();transform:rotateX(0deg);opacity:0; 
+                .boxLogo{.block;.wh(463,168);.bgImg('../images/DBS_logo_home.png');.abCenterX(463);top:134/@rem;z-index:10;.transform3d();transform:rotateX(0deg);opacity:0; 
                     
-                    .box-logo-light{.block;opacity:0;transform-origin:center center;}
+                    .box-logo-light{.block;opacity:0;.transform3d();}
                     .box-logo-light-1{.ab(153,92);.wh(83,74);.bgImg('../images/highlight2.png');transition:2.8s ease;transform:scale(.6);}
                      .box-logo-light-2{.ab(332,-8);.wh(82,108);.bgImg('../images/highlight3.png');/* transform:scale(1.3); */transition:1.5s ease;}  
                 }
@@ -193,7 +201,7 @@ body{background:#333;} /* 2041,907 */
                     .arFull();list-style:none;
 
                     .rcItem-loop(6);
-                    .rcItem{opacity:0;.transform3d();transition:5.8s ease-in-out;}
+                    .rcItem{opacity:0;.transform3d();transition:3.2s ease-in-out;}
                     .rcItem-1{.wh(238,273);.ab(178,566);}
                     .rcItem-2{.wh(331,334);.ab(1410,770);}
                     .rcItem-3{.wh(212,232);.ab(-13,210);}
@@ -229,9 +237,9 @@ body{background:#333;} /* 2041,907 */
                 
                 /* 花朵操作层 */
                 .flowerContent{
-                    .wh(2016,261);.ab(14,370);
+                    .wh(2016,261);.ab(14,370);opacity:1;
                     
-                    .fc-static-hide{filter:alpha(opacity=0);opacity:0;-webkit-opacity:0;transition:opacity .8s ease;}
+                    .fc-static-box{.abFull();opacity:0;transition:.8s ease;}
 
                     /*运动层*/
                     .fc-motion{
@@ -265,9 +273,9 @@ body{background:#333;} /* 2041,907 */
                         .secItem2{.wh(247,261);.ab(391,-1);}
                         .secItem3{.wh(246,260);.ab(638,0);}
                         .secItem4{.wh(247,261);.ab(884,-1);}
-                        .secItem5{.wh(246,260);.ab(1131,0);}
-                        .secItem6{.wh(247,261);.ab(1377,-1);}
-                        .secItem7{.wh(391,260);.ab(1624,0);}
+                        .secItem5{.wh(246,260);.ab(1130,0);}
+                        .secItem6{.wh(247,261);.ab(1376,-1);}
+                        .secItem7{.wh(391,260);.ab(1623,0);}
                         .secItem{
                             transition:2s ease;.transform3d();
                             img{width:100%;}
