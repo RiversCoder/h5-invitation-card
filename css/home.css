@@ -1,0 +1,590 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+.visible {
+  opacity: 1;
+}
+.hidden {
+  opacity: 0;
+}
+.block {
+  display: block;
+}
+.fulled {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+.float_left {
+  float: left;
+}
+body {
+  background: #333;
+}
+/* 2041,907 */
+#container {
+  width: 2459.03614458px;
+  height: 1092.77108434px;
+  margin: 0 auto;
+  background-color: #821514;
+  overflow: hidden;
+  /* 游戏交互层 */
+}
+#container .animated {
+  animation-fill-mode: forwards;
+}
+#container .gameWrapper {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  background-image: url('../images/red_bg.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  overflow: hidden;
+  /* 其他零散物件儿 */
+}
+#container .gameWrapper .gameContent {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  perspective: 1000;
+  -webkit-perspective: 1000;
+  perspective-origin: center center;
+}
+#container .gameWrapper .gameContent .cardbox {
+  width: 2238.55421687px;
+  height: 995.18072289px;
+  position: relative;
+  margin: 0 auto;
+  -webkit-box-shadow: 0 30px 150px #000000;
+  -moz-box-shadow: 0 30px 150px #000000;
+  -ms-box-shadow: 0 30px 150px #000000;
+  -o-box-shadow: 0 30px 150px #000000;
+  box-shadow: 0 30px 150px #000000;
+  /* logo */
+  /* banner background */
+}
+#container .gameWrapper .gameContent .cardbox .boxLogo {
+  display: block;
+  width: 557.8313253px;
+  height: 202.40963855px;
+  background-image: url('../images/DBS_logo_home.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  left: 50%;
+  margin-left: -231px;
+  top: 134px;
+  z-index: 10;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform-origin: center center;
+  transform: rotateX(0deg);
+  opacity: 0;
+}
+#container .gameWrapper .gameContent .cardbox .boxLogo .box-logo-light {
+  display: block;
+  opacity: 0;
+  transform-origin: center center;
+}
+#container .gameWrapper .gameContent .cardbox .boxLogo .box-logo-light-1 {
+  position: absolute;
+  left: 184.3373494px;
+  top: 110.84337349px;
+  width: 100px;
+  height: 89.15662651px;
+  background-image: url('../images/highlight2.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: 2.8s ease;
+  transform: scale(0.6);
+}
+#container .gameWrapper .gameContent .cardbox .boxLogo .box-logo-light-2 {
+  position: absolute;
+  left: 400px;
+  top: -9.63855422px;
+  width: 98.79518072px;
+  height: 130.12048193px;
+  background-image: url('../images/highlight3.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  /* transform:scale(1.3); */
+  transition: 1.5s ease;
+}
+#container .gameWrapper .gameContent .cardbox ul {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  list-style: none;
+  z-index: 1;
+  /*   &:hover{
+                      .cardboxitem-1 .cardboxitem-light{top:-100%;}
+                      .cardboxitem-2 .cardboxitem-light{top:100%;}
+                      .cardboxitem-3 .cardboxitem-light{top:-100%;}
+                      .cardboxitem-4 .cardboxitem-light{top:100%;}
+                   } */
+}
+#container .gameWrapper .gameContent .cardbox ul .cardboxitem {
+  width: 20%;
+  height: 100%;
+  float: left;
+  transform-style: preserve-3d;
+  transform-origin: center;
+  transform: rotateY(0deg);
+  position: relative;
+  overflow: hidden;
+}
+#container .gameWrapper .gameContent .cardbox ul .cardboxitem .cardboxitem-light {
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: .5;
+  transition: .8s ease;
+}
+#container .gameWrapper .gameContent .cardbox ul .cardboxitem-1 .cardboxitem-light {
+  top: 100%;
+}
+#container .gameWrapper .gameContent .cardbox ul .cardboxitem-2 .cardboxitem-light {
+  top: -100%;
+}
+#container .gameWrapper .gameContent .cardbox ul .cardboxitem-3 .cardboxitem-light {
+  top: 100%;
+}
+#container .gameWrapper .gameContent .cardbox ul .cardboxitem-4 .cardboxitem-light {
+  top: -100%;
+}
+#container .gameWrapper .gameContent .cardbox ul .cardboxitem-1 {
+  background-image: url("../images/black_bg1.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+#container .gameWrapper .gameContent .cardbox ul .cardboxitem-2 {
+  background-image: url("../images/black_bg2.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+#container .gameWrapper .gameContent .cardbox ul .cardboxitem-3 {
+  background-image: url("../images/black_bg3.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+#container .gameWrapper .gameContent .cardbox ul .cardboxitem-4 {
+  background-image: url("../images/black_bg4.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+#container .gameWrapper .gameContent .cardbox ul .cardboxitem-5 {
+  background-image: url("../images/black_bg5.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+#container .gameWrapper .otherContent {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 10;
+  /* 光球盒子 */
+  /* 丝带盒子 */
+  /* 剪花层 */
+}
+#container .gameWrapper .otherContent .ribbonContainer {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+#container .gameWrapper .otherContent .ribbonContainer .rcBox {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  list-style: none;
+  /*球的光晕*/
+}
+#container .gameWrapper .otherContent .ribbonContainer .rcBox .rcItem-1 {
+  background-image: url("../images/pombe/ball1.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  animation-fill-mode: forwards;
+}
+#container .gameWrapper .otherContent .ribbonContainer .rcBox .rcItem-2 {
+  background-image: url("../images/pombe/ball2.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  animation-fill-mode: forwards;
+}
+#container .gameWrapper .otherContent .ribbonContainer .rcBox .rcItem-3 {
+  background-image: url("../images/pombe/ball3.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  animation-fill-mode: forwards;
+}
+#container .gameWrapper .otherContent .ribbonContainer .rcBox .rcItem-4 {
+  background-image: url("../images/pombe/ball4.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  animation-fill-mode: forwards;
+}
+#container .gameWrapper .otherContent .ribbonContainer .rcBox .rcItem-5 {
+  background-image: url("../images/pombe/ball5.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  animation-fill-mode: forwards;
+}
+#container .gameWrapper .otherContent .ribbonContainer .rcBox .rcItem-6 {
+  background-image: url("../images/pombe/ball6.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  animation-fill-mode: forwards;
+}
+#container .gameWrapper .otherContent .ribbonContainer .rcBox .rcItem {
+  opacity: 0;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform-origin: center center;
+  transition: 5.8s ease-in-out;
+}
+#container .gameWrapper .otherContent .ribbonContainer .rcBox .rcItem-1 {
+  width: 286.74698795px;
+  height: 328.91566265px;
+  position: absolute;
+  left: 214.45783133px;
+  top: 681.92771084px;
+}
+#container .gameWrapper .otherContent .ribbonContainer .rcBox .rcItem-2 {
+  width: 398.79518072px;
+  height: 402.40963855px;
+  position: absolute;
+  left: 1698.79518072px;
+  top: 927.71084337px;
+}
+#container .gameWrapper .otherContent .ribbonContainer .rcBox .rcItem-3 {
+  width: 255.42168675px;
+  height: 279.51807229px;
+  position: absolute;
+  left: -15.6626506px;
+  top: 253.01204819px;
+}
+#container .gameWrapper .otherContent .ribbonContainer .rcBox .rcItem-4 {
+  width: 271.08433735px;
+  height: 304.81927711px;
+  position: absolute;
+  left: 2031.3253012px;
+  top: 698.79518072px;
+}
+#container .gameWrapper .otherContent .ribbonContainer .rcBox .rcItem-5 {
+  width: 315.6626506px;
+  height: 383.13253012px;
+  position: absolute;
+  left: -168.6746988px;
+  top: 69.87951807px;
+}
+#container .gameWrapper .otherContent .ribbonContainer .rcBox .rcItem-6 {
+  width: 315.6626506px;
+  height: 408.43373494px;
+  position: absolute;
+  left: 2210.84337349px;
+  top: 43.37349398px;
+}
+#container .gameWrapper .otherContent .ribbonContainer .rcBox .rcItem-light-1 {
+  position: absolute;
+  left: 60.24096386px;
+  top: 96.38554217px;
+  opacity: .8;
+}
+#container .gameWrapper .otherContent .ribbonContainer .rcBox .rcItem-light-2 {
+  position: absolute;
+  left: 67.46987952px;
+  top: 106.02409639px;
+  opacity: .8;
+}
+#container .gameWrapper .otherContent .ribbonContainer .rcBox .rcItem-light-3 {
+  position: absolute;
+  left: 15.6626506px;
+  top: 79.51807229px;
+  opacity: .8;
+}
+#container .gameWrapper .otherContent .colorContainer {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  /*纸片*/
+}
+#container .gameWrapper .otherContent .colorContainer .colorful-box {
+  width: 920.48192771px;
+  height: 744.57831325px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-image: url('../images/yellow_riband.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  opacity: 0;
+  transition: 4.8s;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform-origin: center center;
+}
+#container .gameWrapper .otherContent .colorContainer .colorful-box-1 {
+  position: absolute;
+  left: -380.72289157px;
+  top: 538.55421687px;
+}
+#container .gameWrapper .otherContent .colorContainer .colorful-box-2 {
+  -webkit-transform: rotate(-12deg);
+  -moz-transform: rotate(-12deg);
+  -ms-transform: rotate(-12deg);
+  -o-transform: rotate(-12deg);
+  transform: rotate(-12deg);
+  position: absolute;
+  left: 1601.20481928px;
+  top: -349.39759036px;
+}
+#container .gameWrapper .otherContent .colorContainer .colorful-item {
+  width: 48.19277108px;
+  height: 39.75903614px;
+  position: absolute;
+  background-image: url('../images/slip/paper1.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  transition: 6s ease;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform-origin: center center;
+  opacity: 1;
+  top: -50px;
+}
+#container .gameWrapper .otherContent .flowerContainer {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  /* 花朵操作层 */
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerExample {
+  width: 2428.91566265px;
+  height: 314.45783133px;
+  position: absolute;
+  left: 16.86746988px;
+  top: 445.78313253px;
+  /* .bgImg('../images/flower_big.png'); */
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent {
+  width: 2428.91566265px;
+  height: 314.45783133px;
+  position: absolute;
+  left: 16.86746988px;
+  top: 445.78313253px;
+  /*运动层*/
+  /* 静态分段隐藏层 */
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .fc-static-hide {
+  filter: alpha(opacity=0);
+  opacity: 0;
+  -webkit-opacity: 0;
+  transition: opacity .8s ease;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .fc-motion {
+  width: 100%;
+  height: 100%;
+  transition: opacity 1.8s ease;
+  /* 丝带线 */
+  /* 运动中的花朵 */
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .fc-motion .fc-motion-line {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .fc-motion .fc-motion-flowers {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  list-style: none;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .fc-motion .fc-motion-flowers .fcItem {
+  width: 233.73493976px;
+  height: 218.07228916px;
+  opacity: 0;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .fc-motion .fc-motion-flowers .fcItem img {
+  width: 100%;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .fc-motion .fc-motion-flowers .fcItem1 {
+  position: absolute;
+  left: 198.79518072px;
+  top: 0px;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .fc-motion .fc-motion-flowers .fcItem2 {
+  position: absolute;
+  left: 500px;
+  top: 0px;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .fc-motion .fc-motion-flowers .fcItem3 {
+  position: absolute;
+  left: 802.40963855px;
+  top: 0px;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .fc-motion .fc-motion-flowers .fcItem4 {
+  position: absolute;
+  left: 1096.38554217px;
+  top: -1.20481928px;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .fc-motion .fc-motion-flowers .fcItem5 {
+  position: absolute;
+  left: 1397.59036145px;
+  top: 0px;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .fc-motion .fc-motion-flowers .fcItem6 {
+  position: absolute;
+  left: 1689.15662651px;
+  top: 0px;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .fc-motion .fc-motion-flowers .fcItem7 {
+  position: absolute;
+  left: 2009.63855422px;
+  top: 0px;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .staticWrap {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  list-style: none;
+  opacity: 1;
+  /* 每段花朵 */
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .staticWrap .secItem1 {
+  width: 471.08433735px;
+  height: 313.25301205px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .staticWrap .secItem2 {
+  width: 297.59036145px;
+  height: 314.45783133px;
+  position: absolute;
+  left: 471.08433735px;
+  top: -1.20481928px;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .staticWrap .secItem3 {
+  width: 296.38554217px;
+  height: 313.25301205px;
+  position: absolute;
+  left: 768.6746988px;
+  top: 0px;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .staticWrap .secItem4 {
+  width: 297.59036145px;
+  height: 314.45783133px;
+  position: absolute;
+  left: 1065.06024096px;
+  top: -1.20481928px;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .staticWrap .secItem5 {
+  width: 296.38554217px;
+  height: 313.25301205px;
+  position: absolute;
+  left: 1362.65060241px;
+  top: 0px;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .staticWrap .secItem6 {
+  width: 297.59036145px;
+  height: 314.45783133px;
+  position: absolute;
+  left: 1659.03614458px;
+  top: -1.20481928px;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .staticWrap .secItem7 {
+  width: 471.08433735px;
+  height: 313.25301205px;
+  position: absolute;
+  left: 1956.62650602px;
+  top: 0px;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .staticWrap .secItem {
+  transition: 2s ease;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform-origin: center center;
+}
+#container .gameWrapper .otherContent .flowerContainer .flowerContent .staticWrap .secItem img {
+  width: 100%;
+}
+#container .alternationGame {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  opacity: 0;
+}
+#container .alternationGame .alterBox {
+  width: 310.84337349px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.6);
+  box-sizing: border-box;
+  border-right: 1px solid #fff;
+}
+#container .alternationGame .alterBox-1 {
+  position: absolute;
+  left: 310.84337349px;
+  top: 0px;
+}
+#container .alternationGame .alterBox-2 {
+  position: absolute;
+  left: 621.68674699px;
+  top: 0px;
+}
+#container .alternationGame .alterBox-3 {
+  position: absolute;
+  left: 932.53012048px;
+  top: 0px;
+}
+#container .alternationGame .alterBox-4 {
+  position: absolute;
+  left: 1243.37349398px;
+  top: 0px;
+}
+#container .alternationGame .alterBox-5 {
+  position: absolute;
+  left: 1554.21686747px;
+  top: 0px;
+}
+#container .alternationGame .alterBox-6 {
+  position: absolute;
+  left: 1865.06024096px;
+  top: 0px;
+}

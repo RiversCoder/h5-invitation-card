@@ -1,0 +1,141 @@
+/* 光条效果 */
+@keyframes lightLineToTop {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: -100%;
+  }
+}
+@keyframes lightLineToBottom {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+/* logo翻转效果 */
+@keyframes logoFlip {
+  0% {
+    opacity: 0;
+    transform: rotateX(270deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+}
+/* 呼吸效果 */
+@keyframes breath {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(0.8);
+  }
+}
+/* 花朵下落 */
+@keyframes lightLineToLevel {
+  0% {
+    transform: translate3d(0, -200px, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+/* 金属球落下 */
+@keyframes bounceInDowns {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -3000px, 0);
+    transform: translate3d(0, -3000px, 0);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 25px, 0);
+    transform: translate3d(0, 25px, 0);
+  }
+  75% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -10px, 0);
+  }
+  90% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 5px, 0);
+    transform: translate3d(0, 5px, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+/*金属球光泽*/
+@keyframes pulses {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+    transform: translate3d(0, 0, 0);
+    opacity: .5;
+  }
+  50% {
+    -webkit-transform: scale3d(1.85, 1.85, 1.85);
+    transform: scale3d(1.85, 1.85, 1.85);
+    transform: translate3d(-6px, 3px, 0);
+    opacity: .9;
+  }
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+    transform: translate3d(0, 0, 0);
+    opacity: .5;
+  }
+}
+@keyframes moveOpacity {
+  form {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.pulses {
+  -webkit-animation-name: moveOpacity;
+  animation-name: moveOpacity;
+  animation-iteration-count: infinite;
+  animation-duration: 10s;
+  animation-timing-function: ease;
+}
+/* x轴 缓冲运动 */
+@keyframes BufferExercise {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  50% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}

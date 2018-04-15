@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="./css/animate.css">
+    <link rel="stylesheet" type="text/css" href="./css/keyframes.css">
+    <link rel="stylesheet" type="text/css" href="./css/home.css">
+    
+</head>
+<body>
+    <div class="contaner" id="container">
+
+        <div class="gameWrapper">
+           
+            <!-- banner box card and logo animation -->
+            <div class="gameContent">
+                
+                <!-- banner card box -->
+                <div class="cardbox">
+                    <span class="boxLogo" id="boxLogo">
+                        <i class="box-logo-light box-logo-light-1"></i>
+                        <i class="box-logo-light box-logo-light-2"></i>
+                    </span>
+                    <ul id="cardboxlists">
+                        <li class="cardboxitem cardboxitem-1">
+                            <img src="./images/light_se.png" class="cardboxitem-light" />
+                        </li>
+                        <li class="cardboxitem cardboxitem-2">
+                            <img src="./images/light_se.png" class="cardboxitem-light" />
+                        </li>
+                        <li class="cardboxitem cardboxitem-3">
+                            <img src="./images/light_se.png" class="cardboxitem-light" />
+                        </li>
+                        <li class="cardboxitem cardboxitem-4">
+                            <img src="./images/light_se.png" class="cardboxitem-light" />
+                        </li>
+                        <li class="cardboxitem cardboxitem-5"></li>
+                    </ul>    
+                </div>
+
+            </div>
+            
+
+
+            <!-- 装饰物品 -->
+            <div class="otherContent" >
+
+                <!-- 光球层 -->
+                <div class="ribbonContainer" id="ribbonContainer">
+                    <ul class="rcBox">
+                        <li class="rcItem rcItem-1"></li>
+                        <li class="rcItem rcItem-2"></li>
+                        <li class="rcItem rcItem-3"><img src="./images/highlight2.png" class="rcItem-light rcItem-light-1 pulses" /></li>
+                        <li class="rcItem rcItem-4"><img src="./images/highlight2.png" class="rcItem-light rcItem-light-2 pulses" /></li>
+                        <li class="rcItem rcItem-5"></li>
+                        <li class="rcItem rcItem-6"><img src="./images/highlight1.png" class="rcItem-light rcItem-light-3 pulses" /></li>
+                    </ul>
+                </div>
+                
+
+                
+                
+
+                <!-- 剪花层 -->
+                <div class="flowerContainer">
+                    
+                    <!-- 花带 example -->
+                    <div class="flowerExample"></div>
+                    
+                    <!-- 花带 动画层 -->
+                    <div class="flowerContent">
+                        
+                        
+                        <!-- 静态分段隐藏层 -->
+                        <div class="fc-static-hide fc-static-show" id="fcStaticBox">
+                            <ul class="staticWrap">
+                                <li class="secItem secItem1"><image src="./images/flower_left.png"></li>
+                                <li class="secItem secItem2"><image src="./images/flower_middle1.png"></li>
+                                <li class="secItem secItem3"><image src="./images/flower_middle3.png"></li>
+                                <li class="secItem secItem4"><image src="./images/flower_middle1.png"></li>
+                                <li class="secItem secItem5"><image src="./images/flower_middle3.png"></li>
+                                <li class="secItem secItem6"><image src="./images/flower_middle1.png"></li>
+                                <li class="secItem secItem7"><image src="./images/flower_right.png"></li>
+                            </ul>
+                        </div>
+
+
+                        <!-- 运动层 -->
+                        <div class="fc-motion" id="flowerMotionBox">
+                            <div class="fc-motion-line"></div>
+                            <ul class="fc-motion-flowers">
+                                <li class="fcItem fcItem1"><img src="./images/flower2.png" /></li>
+                                <li class="fcItem fcItem2"><img src="./images/flower1.png" /></li>
+                                <li class="fcItem fcItem3"><img src="./images/flower2.png" /></li>
+                                <li class="fcItem fcItem4"><img src="./images/flower1.png" /></li>
+                                <li class="fcItem fcItem5"><img src="./images/flower2.png" /></li>
+                                <li class="fcItem fcItem6"><img src="./images/flower1.png" /></li>
+                                <li class="fcItem fcItem7"><img src="./images/flower2.png" /></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div> 
+
+
+                <!-- 彩色丝带层 -->
+                <div class="colorContainer" id="colorContainer">
+                    
+                    <!-- 黄色大丝带 -->
+                    <span class="colorful-box colorful-box-1"></span>
+                    <span class="colorful-box colorful-box-2"></span>
+
+                    <!-- 迷你彩带 -->
+                    <span class="colorful-item"></span>
+                    <span class="colorful-item"></span>
+                    <span class="colorful-item"></span>
+                    <span class="colorful-item"></span>
+                    <span class="colorful-item"></span>
+                    <span class="colorful-item"></span>
+                    <span class="colorful-item"></span>
+                    <span class="colorful-item"></span>
+                    <span class="colorful-item"></span>
+                    <span class="colorful-item"></span>
+                    <span class="colorful-item"></span>
+                    <span class="colorful-item"></span>
+                    <span class="colorful-item"></span>
+
+                </div>   
+
+            </div>
+
+            
+            <!-- 逻辑交互层 -->
+            <div class="alternationGame" id="alternationGame">
+                  <div class="alterBox alterBox-1"></div>
+                  <div class="alterBox alterBox-2"></div>
+                  <div class="alterBox alterBox-3"></div>
+                  <div class="alterBox alterBox-4"></div>
+                  <div class="alterBox alterBox-5"></div>
+                  <div class="alterBox alterBox-6"></div>
+            </div>
+            
+
+        </div>
+    </div>
+
+
+
+<script type="text/javascript" src="./js/tool.class.js"></script> 
+<script type="text/javascript" src="./js/data.class.js"></script>
+<script type="text/javascript" src="./js/motion.class.js"></script>
+<script type="text/javascript" src="./js/alternation.class.js"></script>  
+<script type="text/javascript">
+    var motion = new Motion(true);
+    new Alternation(motion);
+</script>
+
+
+</body>
+</html>

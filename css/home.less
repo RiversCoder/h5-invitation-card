@@ -1,0 +1,274 @@
+@rem:0.83px;
+@color:#fff;
+@alterWidth: 258;
+*{margin:0;padding:0;}
+html,body{width:100%;height:100%;}
+.visible{opacity:1;}
+.hidden{opacity:0;}
+.block{display:block;}
+.fulled{width:100%;height:100%;box-sizing:border-box;}
+.float_left{float:left;}
+
+.bgColor(@colors:#fff){
+    background-color:@colors;
+}
+
+.bgImg(@imgsrc:''){
+    background-image:url(@imgsrc);
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+}
+
+.bgImgUrl(@imgsrc:''){
+    background-image:url(@imgsrc);
+    background-repeat:no-repeat;    
+}
+
+.ab(@left:0,@top:0){
+    position:absolute;
+    left:@left/@rem;
+    top:@top/@rem;  
+}
+
+.abPercent(@left:0,@top:0){
+    position:absolute;
+    left:@left;
+    top:@top;   
+}
+
+.whPercent(@w:0,@h:0){
+    width:@w;
+    height:@h;
+}
+
+.wh(@w:0,@h:0){
+    width:@w/@rem;
+    height:@h/@rem;
+}
+
+.margin(@t:0,@r:0,@b:0,@l:0){
+    margin:@t/@rem @r/@rem @b/@rem @l/@rem;
+}
+
+.perspective(@distance:0){
+    perspective:@distance;
+    -webkit-perspective:@distance;
+}
+
+.bgCardImg(@num){
+    background-image:url("../images/black_bg@{num}.png");
+    background-repeat:no-repeat;
+    background-size:100% 100%;  
+}
+
+.cardboxitem-loop(@num, @i:1) when (@i <= @num) {
+    .cardboxitem-@{i} {
+        background-image: url("../images/black_bg@{i}.png");
+        background-repeat:no-repeat;
+        background-size:100% 100%;  
+    }
+    .cardboxitem-loop(@num, (@i + 1));
+}
+
+.abFull(){
+    .fulled();.ab(0,0);
+}
+
+.arFull(){
+    .fulled();position:relative;
+}
+
+.rcItem-loop(@num, @i:1) when (@i <= @num) {
+    .rcItem-@{i} {
+        background-image: url("../images/pombe/ball@{i}.png");
+        background-repeat:no-repeat;
+        background-size:100% 100%;
+        animation-fill-mode:forwards;
+    }
+    .rcItem-loop(@num, (@i + 1));
+}
+
+.transform(@trans){
+    -webkit-transform: @trans;
+    -moz-transform: @trans;
+    -ms-transform: @trans;
+    -o-transform: @trans;
+    transform: @trans;
+}
+
+.compatible(@name,@value){
+    -webkit-@{name} : @value;
+    -moz-@{name} : @value;
+    -ms-@{name} : @value;
+    -o-@{name} : @value;
+    @{name} : @value
+}
+
+.transform3d(){
+    transform-style:preserve-3d;backface-visibility:hidden;transform-origin:center center;
+}
+
+body{background:#333;} /* 2041,907 */
+#container{
+    .wh(2041,907);margin:0 auto;.bgColor(#821514);overflow:hidden;
+
+    .animated{animation-fill-mode:forwards;}
+    .gameWrapper{ 
+        .fulled();margin:0 auto;.bgImg('../images/red_bg.png');position:relative;overflow:hidden;
+        
+        .gameContent{
+            .fulled();position:relative;.perspective(1000);perspective-origin:center center;
+
+            .cardbox{
+                .wh(1858,826);position:relative;margin:0 auto;.compatible(box-shadow,0 30px 150px #000);
+                
+                /* logo */
+                .boxLogo{.block;.wh(463,168);.bgImg('../images/DBS_logo_home.png');position:absolute;left:50%;margin-left:-231px;top:134px;z-index:10;.transform3d();transform:rotateX(0deg);opacity:0; 
+                    
+                    .box-logo-light{.block;opacity:0;transform-origin:center center;}
+                    .box-logo-light-1{.ab(153,92);.wh(83,74);.bgImg('../images/highlight2.png');transition:2.8s ease;transform:scale(.6);}
+                     .box-logo-light-2{.ab(332,-8);.wh(82,108);.bgImg('../images/highlight3.png');/* transform:scale(1.3); */transition:1.5s ease;}  
+                }
+                
+                /* banner background */
+                ul{
+                    .fulled();position:relative;list-style:none;z-index:1;
+                     
+                   /*   &:hover{
+                      .cardboxitem-1 .cardboxitem-light{top:-100%;}
+                      .cardboxitem-2 .cardboxitem-light{top:100%;}
+                      .cardboxitem-3 .cardboxitem-light{top:-100%;}
+                      .cardboxitem-4 .cardboxitem-light{top:100%;}
+                   } */
+                    .cardboxitem{
+                        .whPercent(20%,100%);.float_left;transform-style:preserve-3d;transform-origin:center;transform:rotateY(0deg);position:relative;overflow:hidden;
+
+                        .cardboxitem-light{position:absolute;right:0;top:0;opacity:.5;transition:.8s ease;} 
+                    }
+
+                    .cardboxitem-1 .cardboxitem-light{top:100%;}
+                    .cardboxitem-2 .cardboxitem-light{top:-100%;}
+                    .cardboxitem-3 .cardboxitem-light{top:100%;}
+                    .cardboxitem-4 .cardboxitem-light{top:-100%;}
+
+                    .cardboxitem-loop(5);
+                }
+            }
+        }
+        
+        /* 其他零散物件儿 */
+        .otherContent{
+            .abFull();z-index: 10;
+            
+            /* 光球盒子 */
+            .ribbonContainer{
+                .abFull();
+
+                .rcBox{
+                    .arFull();list-style:none;
+
+                    .rcItem-loop(6);
+                    .rcItem{opacity:0;.transform3d();transition:5.8s ease-in-out;}
+                    .rcItem-1{.wh(238,273);.ab(178,566);}
+                    .rcItem-2{.wh(331,334);.ab(1410,770);}
+                    .rcItem-3{.wh(212,232);.ab(-13,210);}
+                    .rcItem-4{.wh(225,253);.ab(1686,580);}
+                    .rcItem-5{.wh(262,318);.ab(-140,58);}
+                    .rcItem-6{.wh(262,339);.ab(1835,36);}
+                    
+                    /*球的光晕*/
+                    .rcItem-light-1{.ab(50,80);opacity:.8;}
+                    .rcItem-light-2{.ab(56,88);opacity:.8;}
+                    .rcItem-light-3{.ab(13,66);opacity:.8;}
+                }
+            }
+
+            /* 丝带盒子 */
+            .colorContainer{
+                
+                .abFull();
+
+                .colorful-box{.wh(764,618);.ab(0,0);.bgImg('../images/yellow_riband.png');opacity:0;transition:4.8s;.transform3d();}
+                .colorful-box-1{.ab(-316,447);}
+                .colorful-box-2{.transform(rotate(-12deg));.ab(1329,-290);}
+                
+                /*纸片*/
+                .colorful-item{.wh(40,33);position:absolute;.bgImg('../images/slip/paper1.png');background-repeat:no-repeat;transition:6s ease;.transform3d();opacity:1;top:-50px;}
+            }
+            
+            /* 剪花层 */
+            .flowerContainer{
+                .abFull();
+
+                .flowerExample{.wh(2016,261);.ab(14,370);/* .bgImg('../images/flower_big.png'); */}
+                
+                /* 花朵操作层 */
+                .flowerContent{
+                    .wh(2016,261);.ab(14,370);
+                    
+                    .fc-static-hide{filter:alpha(opacity=0);opacity:0;-webkit-opacity:0;transition:opacity .8s ease;}
+
+                    /*运动层*/
+                    .fc-motion{
+                        .whPercent(100%,100%);transition:opacity 1.8s ease;
+                        
+                        /* 丝带线 */
+                        .fc-motion-line{.abFull();}
+                        
+                        /* 运动中的花朵 */
+                        .fc-motion-flowers{
+                            .abFull();list-style:none;
+                            
+                            .fcItem{.wh(194,181);opacity:0;img{width:100%}}
+                            .fcItem1{.ab(165,0);}
+                            .fcItem2{.ab(415,0);}
+                            .fcItem3{.ab(666,0);}
+                            .fcItem4{.ab(910,-1);}
+                            .fcItem5{.ab(1160,0);}
+                            .fcItem6{.ab(1402,0);}
+                            .fcItem7{.ab(1668,0);}
+                        }
+                    }
+
+                    /* 静态分段隐藏层 */
+
+                    .staticWrap{
+                        .abFull();list-style:none; opacity:1;
+                        
+                        /* 每段花朵 */
+                        .secItem1{.wh(391,260);.ab(0,0);}
+                        .secItem2{.wh(247,261);.ab(391,-1);}
+                        .secItem3{.wh(246,260);.ab(638,0);}
+                        .secItem4{.wh(247,261);.ab(884,-1);}
+                        .secItem5{.wh(246,260);.ab(1131,0);}
+                        .secItem6{.wh(247,261);.ab(1377,-1);}
+                        .secItem7{.wh(391,260);.ab(1624,0);}
+                        .secItem{
+                            transition:2s ease;.transform3d();
+                            img{width:100%;}
+                        }
+                    }
+                }
+            }
+        }
+        
+       
+    }
+
+     /* 游戏交互层 */
+    .alternationGame{
+        .abFull(); .bgColor(rgba(0,0,0,0.6));z-index:100;opacity:0;
+
+        .alterBox{width:@alterWidth/@rem;height:100%;background:rgba(255,255,255,0.6);box-sizing:border-box;border-right:1px solid #fff;}
+        .alterBox-1{.ab(@alterWidth,0);}
+        .alterBox-2{.ab(@alterWidth*2,0);}
+        .alterBox-3{.ab(@alterWidth*3,0);}
+        .alterBox-4{.ab(@alterWidth*4,0);}
+        .alterBox-5{.ab(@alterWidth*5,0);}
+        .alterBox-6{.ab(@alterWidth*6,0);}
+    }
+}
+
+
+
+
