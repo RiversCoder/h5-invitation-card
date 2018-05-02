@@ -35,6 +35,7 @@ body {
   background-color: #821514;
   overflow: hidden;
   /* 游戏交互层 */
+  /* 视频第一帧 */
 }
 #container .animated {
   animation-fill-mode: forwards;
@@ -44,12 +45,50 @@ body {
   height: 100%;
   box-sizing: border-box;
   margin: 0 auto;
-  background-image: url('../images/red_bg.png');
+  background-image: url('../images/new/red_bg.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: relative;
   overflow: hidden;
+  /* 帷幕装饰  */
   /* 其他零散物件儿 */
+}
+#container .gameWrapper .weimu_wrap {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 2459.03614458px;
+  height: 1092.77108434px;
+}
+#container .gameWrapper .weimu_wrap .mubu_up {
+  width: 2459.03614458px;
+  height: 132.53012048px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-image: url('../images/new/mubu_up.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+#container .gameWrapper .weimu_wrap .mubu_left {
+  width: 280.72289157px;
+  height: 1092.77108434px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-image: url('../images/new/mubu_left.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+#container .gameWrapper .weimu_wrap .mubu_right {
+  width: 280.72289157px;
+  height: 1092.77108434px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-image: url('../images/new/mubu_right.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 #container .gameWrapper .gameContent {
   width: 100%;
@@ -75,7 +114,7 @@ body {
   -o-box-shadow: 0 30px 150px #000000;
   box-shadow: 0 30px 150px #000000;
   z-index: 1;
-  background-image: url('../images/black_bg_big@2x.png');
+  background-image: url('../images/new/city_bg.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   /* canvas */
@@ -121,21 +160,21 @@ body {
 }
 #container .gameWrapper .gameContent .cardbox .boxLogo {
   display: block;
-  width: 557.8313253px;
-  height: 202.40963855px;
-  background-image: url('../images/DBS_logo_home.png');
+  width: 691.56626506px;
+  height: 175.90361446px;
+  background-image: url('../images/flowers/dbs_logo.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: absolute;
   left: 50%;
-  margin-left: -278.91566265px;
-  top: 161.44578313px;
+  margin-left: -345.78313253px;
+  top: 228.91566265px;
   z-index: 10;
   transform-style: preserve-3d;
   backface-visibility: hidden;
   transform-origin: center center;
   transform: rotateX(0deg);
-  opacity: 0;
+  opacity: 1;
 }
 #container .gameWrapper .gameContent .cardbox .boxLogo .box-logo-light {
   display: block;
@@ -211,31 +250,6 @@ body {
 #container .gameWrapper .gameContent .cardbox ul .cardboxitem-4 .cardboxitem-light {
   top: -100%;
 }
-#container .gameWrapper .gameContent .cardbox ul .cardboxitem-1 {
-  background-image: url("../images/black_bg1.png");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-#container .gameWrapper .gameContent .cardbox ul .cardboxitem-2 {
-  background-image: url("../images/black_bg2.png");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-#container .gameWrapper .gameContent .cardbox ul .cardboxitem-3 {
-  background-image: url("../images/black_bg3.png");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-#container .gameWrapper .gameContent .cardbox ul .cardboxitem-4 {
-  background-image: url("../images/black_bg4.png");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-#container .gameWrapper .gameContent .cardbox ul .cardboxitem-5 {
-  background-image: url("../images/black_bg5.png");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
 #container .gameWrapper .otherContent {
   width: 100%;
   height: 100%;
@@ -305,7 +319,7 @@ body {
   transform-style: preserve-3d;
   backface-visibility: hidden;
   transform-origin: center center;
-  transition: 3.2s ease-in-out;
+  transition: 3.6s ease-in-out;
 }
 #container .gameWrapper .otherContent .ribbonContainer .rcBox .rcItem-1 {
   width: 286.74698795px;
@@ -454,7 +468,7 @@ body {
   position: absolute;
   left: 0px;
   top: 0px;
-  opacity: 0;
+  opacity: 1;
   transition: .8s ease;
 }
 #container .gameWrapper .otherContent .flowerContainer .flowerContent .fc-motion {
@@ -640,4 +654,141 @@ body {
   position: absolute;
   left: 1865.06024096px;
   top: 0px;
+}
+#container .videoCanvas {
+  width: 2459.03614458px;
+  height: 1092.77108434px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 11;
+  background-image: url('../images/imgs/00000.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: 2s;
+  opacity: 1;
+}
+#container .progressWrap {
+  width: 2459.03614458px;
+  height: 1092.77108434px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 12;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: 1.2s;
+}
+#container .progressWrap .progressBox {
+  width: 1069.87951807px;
+  height: 168.6746988px;
+  position: absolute;
+  left: 50%;
+  margin-left: -534.93975904px;
+  top: 50%;
+  margin-top: -84.3373494px;
+}
+#container .progressWrap .progressBox .progressLine {
+  width: 1069.87951807px;
+  height: 14.45783133px;
+  position: absolute;
+  left: 50%;
+  margin-left: -534.93975904px;
+  top: 28px;
+  border-radius: 7.22891566px;
+  background: rgba(237, 228, 197, 0.7);
+  box-shadow: -3px -5px 5px #a3734d inset;
+  box-shadow: 0 0px 6px #000;
+}
+#container .progressWrap .progressBox .progressContent {
+  width: 0px;
+  height: 14.45783133px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  border-radius: 7.22891566px;
+  background-image: url('../images/progress.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-size: 51.80722892px 14.45783133px;
+  background-repeat: repeat-x;
+  animation: progressAnimation 1s linear infinite;
+  overflow-x: hidden;
+}
+#container .progressWrap .progressBox .preogressText {
+  display: block;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  margin-top: 100px;
+  font-size: 26.5060241px;
+  font-weight: bold;
+  font-family: Open Sans;
+}
+#container .videoWrap {
+  width: 2459.03614458px;
+  height: 1092.77108434px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 10;
+  transition: 1.8s;
+  opacity: 1;
+}
+#container .videoWrap .logoVideos {
+  width: 2459.03614458px;
+  height: 1092.77108434px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+#container .titleBox {
+  width: 2459.03614458px;
+  height: 1092.77108434px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+#container .titleBox .timg {
+  width: 1419.27710843px;
+  height: 128.91566265px;
+  position: absolute;
+  left: 50%;
+  bottom: 457.8313253px;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform-origin: center center;
+  transition: .6s;
+  transform: rotate3d(1, 0, 0, 90deg) translateX(-50%);
+}
+#container .titleBox .bimg {
+  width: 1412.04819277px;
+  height: 81.92771084px;
+  position: absolute;
+  left: 50%;
+  bottom: 361.44578313px;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform-origin: center center;
+  transition: .6s;
+  transform: rotate3d(1, 0, 0, -90deg) translateX(-50%);
+}
+#container .yanhuaBox {
+  width: 2459.03614458px;
+  height: 1092.77108434px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 10;
+}
+#container .windowLine {
+  width: 106.02409639px;
+  height: 820.48192771px;
+  position: absolute;
+  top: -180.72289157px;
+  right: 120.48192771px;
+  background-image: url('../images/string.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 2000;
+  cursor: pointer;
 }

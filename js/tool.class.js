@@ -83,6 +83,28 @@ class Tool{
         return items;
     }
 
+    addZoom(num,len){
+        //1.判断位数
+        var str = num + '';
+        var cl = str.length;
+
+        if(str.length < len){
+
+            //1.补零
+            while (str.length < len)
+            {
+                str = '0' + str;
+            }
+
+            return str;
+        }else{
+            return num;
+        }
+
+    }
+
+    
+
 /*
     animate(elem,animation_name, count, delay,styles) {
         var x = elem;

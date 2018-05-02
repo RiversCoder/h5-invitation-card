@@ -1,3 +1,5 @@
+@rem : 0.83px;
+
 /* 光条效果 */
 @keyframes lightLineToTop{
     0%{
@@ -162,5 +164,17 @@
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     opacity: 1;
+  }
+}
+
+/* 进度条运动 */
+
+@keyframes progressAnimation{
+  from {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 42/@rem 0;
   }
 }

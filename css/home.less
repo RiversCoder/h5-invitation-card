@@ -126,14 +126,36 @@ body{background:#333;} /* 2041,907 */
 
     .animated{animation-fill-mode:forwards;}
     .gameWrapper{ 
-        .fulled();margin:0 auto;.bgImg('../images/red_bg.png');position:relative;overflow:hidden;
+        .fulled();margin:0 auto;.bgImg('../images/new/red_bg.png');position:relative;overflow:hidden;
         
+         /* 帷幕装饰  */
+        .weimu_wrap{
+            .ab(0,0);.wh(2041,907);
+            
+            //顶部帷幕    
+            .mubu_up{
+                .wh(2041,110);.ab(0,0);.bgImg('../images/new/mubu_up.png');
+            }
+            
+            //左侧帷幕
+            .mubu_left{
+                .wh(233,907);.ab(0,0);.bgImg('../images/new/mubu_left.png');
+            }
+
+            //右侧帷幕
+            .mubu_right{
+                .wh(233,907);position:absolute;top:0;right:0;.bgImg('../images/new/mubu_right.png');
+            }
+
+        }
+
+
         .gameContent{
             .fulled();position:relative;.perspective(12000);perspective-origin:center center;
              
             /* canvas box */
             .logocanvasbox{
-                .wh(1858,826);.abCenterX(1858);.compatible(box-shadow,0 30px 150px #000);z-index:1;.bgImg('../images/black_bg_big@2x.png');
+                .wh(1858,826);.abCenterX(1858);.compatible(box-shadow,0 30px 150px #000);z-index:1;.bgImg('../images/new/city_bg.png');
                 
                 /* canvas */
                 .logoparticle{
@@ -156,7 +178,7 @@ body{background:#333;} /* 2041,907 */
                 .wh(1858,826);position:relative;margin:0 auto;z-index:3;.transform3d();transform-origin:center 0;transform:rotate3d(0,0,0,0deg);
                 
                 /* logo */
-                .boxLogo{.block;.wh(463,168);.bgImg('../images/DBS_logo_home.png');.abCenterX(463);top:134/@rem;z-index:10;.transform3d();transform:rotateX(0deg);opacity:0; 
+                .boxLogo{.block;.wh(574,146);.bgImg('../images/flowers/dbs_logo.png');.abCenterX(574);top:190/@rem;z-index:10;.transform3d();transform:rotateX(0deg);opacity:1; 
                     
                     .box-logo-light{.block;opacity:0;.transform3d();}
                     .box-logo-light-1{.ab(153,92);.wh(83,74);.bgImg('../images/highlight2.png');transition:2.8s ease;transform:scale(.6);}
@@ -184,9 +206,10 @@ body{background:#333;} /* 2041,907 */
                     .cardboxitem-3 .cardboxitem-light{top:100%;}
                     .cardboxitem-4 .cardboxitem-light{top:-100%;}
 
-                    .cardboxitem-loop(5);
                 }
             }
+
+
         }
         
         /* 其他零散物件儿 */
@@ -201,7 +224,7 @@ body{background:#333;} /* 2041,907 */
                     .arFull();list-style:none;
 
                     .rcItem-loop(6);
-                    .rcItem{opacity:0;.transform3d();transition:3.2s ease-in-out;}
+                    .rcItem{opacity:0;.transform3d();transition:3.6s ease-in-out;}
                     .rcItem-1{.wh(238,273);.ab(178,566);}
                     .rcItem-2{.wh(331,334);.ab(1410,770);}
                     .rcItem-3{.wh(212,232);.ab(-13,210);}
@@ -239,7 +262,7 @@ body{background:#333;} /* 2041,907 */
                 .flowerContent{
                     .wh(2016,261);.ab(14,370);opacity:1;
                     
-                    .fc-static-box{.abFull();opacity:0;transition:.8s ease;}
+                    .fc-static-box{.abFull();opacity:1;transition:.8s ease;}
 
                     /*运动层*/
                     .fc-motion{
@@ -299,6 +322,60 @@ body{background:#333;} /* 2041,907 */
         .alterBox-4{.ab(@alterWidth*4,0);}
         .alterBox-5{.ab(@alterWidth*5,0);}
         .alterBox-6{.ab(@alterWidth*6,0);}
+    }
+    
+    /* 视频第一帧 */
+    .videoCanvas{
+       .wh(2041,907);.ab(0,0);z-index:11;.bgImg('../images/imgs/00000.jpg');transition: 2s;opacity: 1;
+    }
+
+    .progressWrap{
+        .wh(2041,907);.ab(0,0);z-index:12;background-color:rgba(0,0,0,0.8);transition:1.2s;
+        
+        .progressBox{
+            .wh(888,140);.abCenterX(888);top:50%;margin-top:-70/@rem;
+
+            .progressLine{
+                .wh(888,12);.abCenterX(888);top:28px;border-radius: 6/@rem;background:rgba(237,228,197,.7);box-shadow:-3px -5px 5px #a3734d inset;box-shadow: 0 0px 6px #000; 
+            }
+
+            .progressContent{
+                .wh(0,12);.ab(0,0);border-radius: 6/@rem;.bgImg('../images/progress.png');background-size:43/@rem 12/@rem;background-repeat:repeat-x;animation: progressAnimation 1s linear infinite;overflow-x: hidden;
+            }
+
+            .preogressText{
+                .block;color:#fff;width:100%;text-align: center;margin-top: 83/@rem;font-size:22/@rem;font-weight: bold;font-family:Open Sans;
+            }
+        }
+    }
+
+    .videoWrap{
+
+        .wh(2041,907);.ab(0,0);z-index:10;transition: 1.8s;opacity: 1;
+
+        .logoVideos{
+            .wh(2041,907);.ab(0,0);
+        }
+    }
+
+    .titleBox{
+
+        .wh(2041,907);.ab(0,0);
+
+        .timg{
+            .wh(1178,107);position: absolute;left:50%;bottom:380/@rem;.transform3d();transition: .6s;transform: rotate3d(1,0,0,90deg) translateX(-50%);
+        }
+        .bimg{
+            .wh(1172,68);position: absolute;left:50%;bottom:300/@rem;.transform3d();transition: .6s;transform: rotate3d(1,0,0,-90deg) translateX(-50%);
+        }
+    }
+
+    .yanhuaBox{
+        .wh(2041,907);.ab(0,0);z-index:10;
+    }
+    
+    .windowLine{
+        .wh(88,681);position: absolute;top:-150/@rem;right:100/@rem;.bgImg('../images/string.png');z-index:2000;cursor: pointer;
     }
 }
 

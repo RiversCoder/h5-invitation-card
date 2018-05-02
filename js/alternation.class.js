@@ -2,15 +2,35 @@ class Alternation{
     
     constructor(motion){
 
+
+        //累计所有的触碰次数
+        this.allToucheState = {
+            '0': false,
+            '1': false,
+            '2': false,
+            '3': false,
+            '4': false,
+            '5': false
+        };
+        this.addNums = 0;
+
+        //指定需要多少目标手势触控
+        this.goalNum = 6;
+
         //数据对象
         this.datas = new Datas();
         //工具对象
         this.tool = new Tool();
         //动画对象
         this.motion = motion;
-
         //交互层对象
         this.box = document.getElementById('alternationGame');
+
+
+        //缓存的所有图片
+        this.imgs = [];
+        //是否可以开始绘制
+        this.isDrawOnOff = false;
 
         //数组
         this.arr = [];
@@ -28,6 +48,7 @@ class Alternation{
         //end数组
         this.endArr = [];
 
+        //初始化方法
         this.init();
     }
 
@@ -35,11 +56,449 @@ class Alternation{
     init(){
 
         //1. 绑定事件
-        this.touchs();
+        //this.touchs();
 
         //2. 检测手指滑动的位置
         //this.checkPostion();
+        
+        //1. 绑定新事件
+       // this.obindNewEvent();
+
+        //2.如果点击sunzi
+        //this.playCanvass();    
+
+        //this.motion.initballons();
+
+        //绘制图片动画
+        //this.drawPicAnimation();
+        
+        //烟花
+        //this.fireworks();
+        
+        //1. 加载缓存图片 静读条读取
+        this.loadVideoImgs();
+
+        //2.点击帷幕拉条进入动画
+        this.clickIntoMotion();
+
+
+         //执行动画绘制
+
     }
+
+
+    //1. 加载缓存图片
+    loadVideoImgs(){
+            
+        var imgNums = 133;
+        var ci = 0;
+        var This = this;
+        var p = 0;
+
+        //进度条
+        var progressWrap = document.getElementsByClassName('progressWrap')[0];
+        var progressBox = document.getElementById('progressBox');
+        var con = progressBox.getElementsByClassName('progressLine')[0];
+        var box = progressBox.getElementsByClassName('progressContent')[0];
+        var text = progressBox.getElementsByClassName('preogressText')[0];
+        var w = con.clientWidth;
+        var This = this;
+
+
+        //加载图片
+        for(var i=0;i<imgNums;i++){
+            var img = new Image();
+            img.src = './images/imgs/'+this.tool.addZoom(i,5)+'.jpg';
+            img.onload = function(){
+                
+                ci++;
+                This.imgs.push(this);
+
+                //进度条交互
+                p = ci/imgNums;
+                text.innerText = Math.floor(p*100)+ '%';
+                box.style.width = Math.ceil(w*p) + 'px';
+
+                //如果缓存完所有图片
+                if(ci == imgNums){
+                    
+                    //关闭进度条层
+                    progressWrap.style.opacity = 0;
+                    progressWrap.addEventListener('transitionend',()=>{
+                        progressWrap.style.display = 'none';
+                    });
+
+                    //打开绘制开关
+                    This.isDrawOnOff = true;
+                }
+
+            }
+        }
+    }
+
+
+    //2. 点击帷幕线索进入动画
+    clickIntoMotion(){
+        var a = document.getElementById('windowLine');
+        a.addEventListener('click',()=>{
+            //1. 运动移除动画
+            a.classList.add('animated');
+            a.classList.add('bounceOutUp');
+
+            if(this.isDrawOnOff){
+                this.drawPicAnimation(this.imgs.length);
+            }
+
+        }); 
+    }
+
+    //3. 绘制片头帷幕视频
+    drawPicAnimation(imgNums){
+
+        
+        var arr = this.imgs;
+        var videoCanvas = document.getElementById('videoCanvas');
+        var canvas = document.getElementById('logoparticles');
+        var ctx = canvas.getContext('2d');
+        var videoWrap = document.getElementById('videoWrap');
+        var w = videoWrap.clientWidth;
+        var h = videoWrap.clientHeight;
+        canvas.setAttribute('width',w);
+        canvas.setAttribute('height',h);
+        
+        var i = 0;
+        var timer = null;
+        
+        videoCanvas.style.opacity = 0;
+        timer = setInterval(()=>{
+
+            if(i >= imgNums-20){
+                
+                //1. 渐隐消失
+                videoWrap.style.opacity = 0;
+                
+                //2. 进入动画
+                this.goIntoMotion(); 
+                
+                videoWrap.addEventListener('transitionend',()=>{
+                    videoWrap.style.display = 'none';
+                });
+
+            }
+
+            //当超出最大图片数量 停止渲染
+            if(i >= imgNums){
+                clearInterval(timer);
+                return;
+            }
+
+            ctx.drawImage(arr[i++],0,0,w,h);  //
+
+        },20);
+    }
+
+
+    //4. 进入动画
+    goIntoMotion(){
+        //1. 左右帷幕 和 上帷幕 运动入场
+        this.nextWindowAnimation();
+    }
+
+
+    //5. 左右帷幕 和 上帷幕 运动入场
+    nextWindowAnimation(){
+
+        var left = document.getElementsByClassName('mubu_left')[0];
+        var right = document.getElementsByClassName('mubu_right')[0];
+        var up = document.getElementsByClassName('mubu_up')[0];
+
+        //左窗帘进入
+        left.classList.add('animated');
+        left.classList.add('fadeInLeft');
+
+        right.classList.add('animated');
+        right.classList.add('fadeInRight'); 
+
+        up.classList.add('animated');
+        up.classList.add('fadeInDown'); 
+
+
+        //1. 出现金属球动画
+        this.motion.ribbonContainer();
+
+        console.log(this.motion)
+
+        //2. 出现彩带
+        this.motion.bigColorsFalling();
+        //3. 出现小纸片
+        //this.motion.smallColorsFalling();
+        //
+        //4.绑定事件
+        //this.obindNewEvent();
+
+    }
+
+
+    obindNewEvent(){
+        var elems = this.box.getElementsByClassName('alterBox');
+        var This = this;
+        this.arr = [];
+        
+        //遍历绑定touch交互事件
+        for(var i=0;i<elems.length;i++){
+            this.oaddListenerAdd(i,elems[i],function(r){
+                if(r == This.goalNum){
+                    This.isMotion();
+                }
+            });
+        }
+    }
+
+
+
+
+    //绑定事件检测离开
+    oaddListenerAdd(index,elem,fn){
+        
+        var This = this;
+        var result = 0;
+
+        elem.addEventListener('touchstart',function(ev){
+            This.allToucheState[index] = true;
+
+             //检测是否满足最大手势数
+            result = This.ocheckMaxNum();
+
+            fn&&fn(result);
+        });
+
+    }
+
+
+
+
+
+
+    //绑定事件检测离开
+    oaddListener(index,elem){
+        
+        var This = this;
+
+        elem.addEventListener('touchstart',function(ev){
+            This.allToucheState[index] = true;
+            //检测是否满足最大手势数
+            This.ocheckMaxNum();
+        });
+
+        elem.addEventListener('touchend',function(ev){
+            This.allToucheState[index] = false;
+            //检测是否满足最大手势数
+            This.ocheckMaxNum();            
+        });
+    }
+
+
+
+
+    //检测是否满足最大手势数
+    ocheckMaxNum(){
+
+        var bs = this.allToucheState;
+        var result = 0;
+
+        for(var key in bs){
+            if(bs[key]){
+                result++;
+            }
+        }
+
+        return result;
+    }
+
+
+
+
+    //motion动画
+    isMotion(){
+
+        //获取花朵信息
+        var This = this;
+        var arr = This.arr;
+        var box =  document.getElementById('fcStaticBox');
+        var flowers = box.getElementsByClassName('secItem');
+        var index = [];
+        var noDropflower = [];
+
+        var s = 0;
+        var e = flowers.length;
+        var c = Math.floor((e-s)/2);
+
+
+        // 断裂旋转
+        for(var i=0;i<flowers.length;i++){
+            flowers[i].style[This.tool.prefixBrowserVersion('transform')]=  'translate3d(0px,0px,0px) rotate3d(0,0,1,0deg)';
+            flowers[i].style[This.tool.prefixBrowserVersion('opacity')]=  1;
+        } 
+
+
+        for(var i=0;i<c;i++){
+            flowers[i].style[This.tool.prefixBrowserVersion('transition')] =  (6+i) + 's';
+        } 
+
+
+        for(var i=c;i<flowers.length;i++){
+            flowers[i].style[This.tool.prefixBrowserVersion('transition')] =  (10-(i-c)) +'s';
+        } 
+
+
+        
+        flowers[0].style[This.tool.prefixBrowserVersion('transform')] =  'translate3d(-400px,-800px,0px) rotate3d(0,0,1,20deg)';
+        flowers[0].style[This.tool.prefixBrowserVersion('opacity')] =  0;
+       
+        flowers[1].style[This.tool.prefixBrowserVersion('transform')] =  'translate3d(-450px,-800px,0px) rotate3d(0,0,1,30deg)';
+        flowers[1].style[This.tool.prefixBrowserVersion('opacity')] =  0;
+
+        flowers[2].style[This.tool.prefixBrowserVersion('transform')] =  'translate3d(-500px,-800px,0px) rotate3d(0,0,1,30deg)';
+        flowers[2].style[This.tool.prefixBrowserVersion('opacity')] =  0;
+
+        flowers[3].style[This.tool.prefixBrowserVersion('transform')] =  'translate3d(400px,-800px,0px) rotate3d(0,0,1,30deg)';
+        flowers[3].style[This.tool.prefixBrowserVersion('opacity')] =  0;
+
+        flowers[4].style[This.tool.prefixBrowserVersion('transform')] =  'translate3d(450px,-800px,0px) rotate3d(0,0,1,-30deg)';
+        flowers[4].style[This.tool.prefixBrowserVersion('opacity')] =  0;
+
+        flowers[5].style[This.tool.prefixBrowserVersion('transform')] =  'translate3d(500px,-800px,0px) rotate3d(0,0,1,-30deg)';
+        flowers[5].style[This.tool.prefixBrowserVersion('opacity')] =  0;
+
+        flowers[6].style[This.tool.prefixBrowserVersion('transform')] =  'translate3d(550px,-800px,0px) rotate3d(0,0,1,-30deg)';
+        flowers[6].style[This.tool.prefixBrowserVersion('opacity')] =  0;
+
+    
+        setTimeout(()=>{
+            //烟花效果
+            //this.fireworks();
+        },100);
+
+        setTimeout(()=>{
+            this.showTitle();
+        },4000)
+
+        setTimeout(()=>{
+           this.disappearColors();
+           this.disappearBallon();
+           this.backAnimation();
+        },2000);
+    }
+
+
+    //出现文字
+    showTitle(){
+        var timg = document.getElementsByClassName('timg')[0];
+        var bimg = document.getElementsByClassName('bimg')[0];
+
+        timg.style[this.tool.prefixBrowserVersion('transform')] = 'rotate3d(1,0,0,0deg) translateX(-50%)'
+        bimg.style[this.tool.prefixBrowserVersion('transform')] = 'rotate3d(1,0,0,0deg) translateX(-50%)'
+    }
+
+    //播放
+    playCanvass(){
+        
+        var lineBtn = document.getElementById('lalian');
+        var videoCanvas = document.getElementsByClassName('videoCanvas')[0];
+        var videoWrap = document.getElementById('videoWrap');
+        var logoVideo = document.getElementById('logoVideos');
+        var canvas = document.getElementById('logoparticles');
+        var w = videoWrap.offsetWidth;
+        var h = videoWrap.offsetHeight;
+        canvas.setAttribute('width',w);
+        canvas.setAttribute('height',h);
+        var ctx = canvas.getContext('2d');
+        var timer = null;
+        var dur = null;
+        var ts = 20;
+        var time = 0;
+        var This = this;
+
+
+        //监听播放
+        logoVideo.addEventListener('play',function(){
+            console.log(this.duration)
+            timer = setInterval(()=>{
+                time += ts;
+                
+                if( time > this.duration*1000-200 ){
+                    videoWrap.style.opacity = 0;
+                    //执行下一个动画
+                    This.nextWindowAnimation();
+                    clearInterval(timer);
+                    return;
+                }
+                ctx.drawImage(this,0,-140,w,h+300);
+            },ts)
+        })
+
+        lineBtn.onclick = function(){
+
+            //运动动画
+            this.classList.add('animated');
+            this.classList.add('bounceOutUp');
+
+            //视频背景消失
+            videoCanvas.style.opacity = 0;
+            logoVideo.play();
+        }
+    }
+
+
+    //执行下一个窗帘动画
+    nextWindowAnimation(){
+
+        var left = document.getElementsByClassName('mubu_left')[0];
+        var right = document.getElementsByClassName('mubu_right')[0];
+        var up = document.getElementsByClassName('mubu_up')[0];
+
+        //左窗帘进入
+        left.classList.add('animated');
+        left.classList.add('fadeInLeft');
+
+        right.classList.add('animated');
+        right.classList.add('fadeInRight'); 
+
+        up.classList.add('animated');
+        up.classList.add('fadeInDown'); 
+
+
+        //1. 出现金属球动画
+        //this.motion.ribbonContainer();         
+        //2. 出现彩带
+        //this.motion.bigColorsFalling();
+        //3. 出现小纸片
+        //this.motion.smallColorsFalling();
+        //
+        //4.绑定事件
+        //this.obindNewEvent();
+
+    }
+
+
+
+
+    
+
+
+
+
+    //烟花效果
+    fireworks(){
+        $('.yanhuaBox').fireworks({ 
+          sound: false, // sound effect
+          opacity: 1, 
+          width: '100%', 
+          height: '100%' 
+        });
+    }
+
+    /* 旧的事件交互 */
 
     initDefault(){
         this.box.addEventListener('touchstart',function(ev){
@@ -47,11 +506,14 @@ class Alternation{
         })
     }
 
+
     checkPostion(obj){
         var box = this.box;
         let data = this.datas.getSlidePostions(); 
     }
 
+
+    //
     touchs(){
 
         var elems = this.box.getElementsByClassName('alterBox');
@@ -68,12 +530,18 @@ class Alternation{
                         return;
                     }
                 }
+
                 This.arr.push(obj);
+
                 This.handleIndex();
             });
         }
+
     }
 
+
+
+    // 
     handleIndex(){
 
         //获取花朵信息
@@ -83,7 +551,6 @@ class Alternation{
         var flowers = box.getElementsByClassName('secItem');
         var index = [];
         var noDropflower = [];
-
 
         //批量处理index对应的花朵下落情况
         for(var i=0;i<arr.length;i++){
@@ -100,17 +567,20 @@ class Alternation{
             This.dropOnoff = false;
         }
         
-
         //获取还剩下花朵的索引
         noDropflower = this.getNoDrapIndex(flowers,index,flowers); 
         this.executeMotion(index,flowers,noDropflower);
         
         //检测是否可以进入退出动画
         this.checkIsOutMotion(noDropflower);
+
     }
     
+
+
     //检测并且进入退出动画
     checkIsOutMotion(arr){
+        
         var box =  document.getElementById('fcStaticBox');
         var flowers = box.getElementsByClassName('secItem');
         var evNum = 0;
@@ -131,22 +601,25 @@ class Alternation{
                }
             })
         }
+
     }   
-    
- 
+
+
 
     executeOutMotion(){
+        
         var i = 0;
+        
         console.log('开始执行退出动画!'+ i++);
 
         //消失金属气球
-        this.disappearBallon();
+        //this.disappearBallon();
 
         //消失黄色彩带
-        this.disappearColors();
+        //this.disappearColors();
 
         //渐变消失飘落的彩带
-        this.disappearSmallPapers();
+        //this.disappearSmallPapers();
 
     }
 
@@ -154,12 +627,16 @@ class Alternation{
     //渐变消失飘落的纸片
     disappearSmallPapers(){
         var items = this.tool.getItems('colorContainer','colorful-item');
+        
         //清理定时器
         clearInterval(this.motion.colorSmallTimer);
+
         for(var i=0;i<items.length;i++){
             items[0].style['opacity'] = 1;
         }
+
     }   
+
 
     //黄色彩带消失
     disappearColors(){
@@ -178,6 +655,8 @@ class Alternation{
             })
         }
     }   
+
+
 
     //金属球消失
     disappearBallon(){
@@ -209,19 +688,13 @@ class Alternation{
             }
 
             var timer = setTimeout(()=>{
-                This.backAnimation();
+                //This.backAnimation();
                 clearTimeout(timer);
             },2000);
 
-            /*balls[i].addEventListener('transitionend',function(){
-                this.style.display = 'none';
-                num++;
-                if(num > 2){
-                    
-                }
-            })*/
         }
     }
+
 
     //后续动画
     backAnimation(){
@@ -229,17 +702,8 @@ class Alternation{
         //初始化气球位置
         this.motion.initballons();
         
-        //翻开动画
-        this.motion.cardbox();
-        
         //气球上升动画
         this.motion.flyballs();
-
-        var timer = setTimeout(()=>{
-            this.motion.playcanvas();
-            clearTimeout(timer);
-        },4500);
-
     }
 
 
@@ -274,14 +738,6 @@ class Alternation{
                     var centerIndex = index[0];
 
                     movefn(centerIndex,flowers.length);
-                    /*for(var i=centerIndex;i>=-1;i--){
-                        motionAttr = {rX: 10,rY: 460 - 30*(centerIndex-i),rA: 80,time: 3+2*(centerIndex-i),alpha: 0,delay:0+(centerIndex-i)*0.2};
-                        motion(motionAttr,i+1,80);
-                    }
-                    for(var i=centerIndex+1;i<flowers.length;i++){
-                        motionAttr = {rX: 10,rY: 460 - 30*(i-centerIndex),rA: 80,time: 3+2*i,alpha: 0,delay: 0+(i-centerIndex)*0.2};
-                        motion(motionAttr,i,-80);
-                    }*/
                 }
 
                 
@@ -354,6 +810,7 @@ class Alternation{
         }
     }
 
+
     getNoDrapIndex(arr1,arr2,flowers){
         var newArr = [];
         var indexArr = [];
@@ -379,6 +836,8 @@ class Alternation{
         
         return newArr;
     }
+
+
 
     elemTouch(elem,ind,fn){
 

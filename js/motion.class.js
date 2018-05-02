@@ -20,6 +20,7 @@ class Motion{
             //初始化所有动画
             this.init();
         }
+        
     }
 
 
@@ -27,30 +28,30 @@ class Motion{
     //初始化 所有到剪彩前的动画
     init(){ 
 
-        //1. 光线移动 300ms
+        /*//1. 光线移动 300ms
         let timer1 = setTimeout(()=>{
             this.lightMove();
             clearTimeout(timer1);
-        },300);
+        },300);*/
 
         //2. logo翻转出现 800ms
         let timer2 = setTimeout(()=>{
-            this.logoFlip();
+            //this.logoFlip();
             clearTimeout(timer2);
         },500);
 
         //3. 花球落下
         let timer3 = setTimeout(()=>{
-            this.flowerDrop();
+            //this.flowerDrop();
             clearTimeout(timer3);
         },900);
 
 
         //4. 球落下 大彩带飘落
         let timer4 = setTimeout(()=>{
-            this.ribbonContainer();
-            this.bigColorsFalling();
-            this.smallColorsFalling();
+            //this.ribbonContainer();
+           // this.bigColorsFalling();
+            //this.smallColorsFalling();
             clearTimeout(timer4);
         },3500);
         
@@ -198,7 +199,7 @@ class Motion{
             clearTimeout(btimer);
         },2000);
 
-        this.ballTimer = setInterval(smove,5000);
+        this.ballTimer = setInterval(smove,4000);
     }
 
 
@@ -252,9 +253,13 @@ class Motion{
             }
 
         }
-        //smove();
+        
+        var btimer = setTimeout(function(){
+            smove();
+            clearTimeout(btimer);
+        },2000);
 
-        this.colorsTimer = setInterval(smove,4000);       
+        this.colorsTimer = setInterval(smove,5000);       
 
     }
 
@@ -265,8 +270,8 @@ class Motion{
         var tool = this.tool;
         var wrap = document.getElementById('colorContainer');
         var childs = wrap.getElementsByClassName('colorful-item');
-        var w = wrap.offsetWidth;
-        var h = wrap.offsetHeight;
+        var w = 3000;
+        var h = 1400;
 
         var arr = this.datas.getColorDatas();
         
@@ -319,7 +324,7 @@ class Motion{
             w = Math.floor(balls[i].w/this.datas.multiple);
             h = Math.floor(balls[i].h/this.datas.multiple);
             l = Math.floor(Math.random()*( box.clientWidth - w));
-            b = Math.floor(Math.random()*30);
+            b = Math.floor(Math.random()*30)-600;
             
             time  = 5 + Math.random()*i*0.3;
 
@@ -330,7 +335,18 @@ class Motion{
             w = Math.floor(balls[i].w/this.datas.multiple);
             h = Math.floor(balls[i].h/this.datas.multiple);
             l = Math.floor(Math.random()*( box.clientWidth - w));
-            b = -600 - Math.floor(Math.random()*30);
+            b = Math.floor(Math.random()*30)-700;
+            
+            time  = 5 + Math.random()*i*0.3;
+
+            str+= `<span class="ballItem ballItem${i}"  style="background-image:url('${balls[i].src}');width:${w}px;height:${h}px;left:${l}px;bottom:${b}px;transform:translate3d(0,0,0) rotate3d(0,0,1,0deg);transition:${time}s ease;"></span>`;
+        }
+
+        for(var i=0;i<balls.length;i++){
+            w = Math.floor(balls[i].w/this.datas.multiple);
+            h = Math.floor(balls[i].h/this.datas.multiple);
+            l = Math.floor(Math.random()*( box.clientWidth - w));
+            b = Math.floor(Math.random()*30)-800;
             
             time  = 5 + Math.random()*i*0.3;
 
@@ -340,6 +356,50 @@ class Motion{
         box.innerHTML = str;
     }
 
+    //初始化星星
+    initballons(){
+        
+        var box = document.getElementById('balloonbox');
+        var balls = this.datas.getBalloons();
+        
+        var str = '';
+        var w = 0,h = 0,bg = '',l = 0,b = 0,time = 0;
+
+        for(var i=0;i<balls.length;i++){
+            w = Math.floor(balls[i].w/this.datas.multiple);
+            h = Math.floor(balls[i].h/this.datas.multiple);
+            l = Math.floor(Math.random()*( box.clientWidth - w));
+            b = Math.floor(Math.random()*30)-600;
+            
+            time  = 5 + Math.random()*i*0.3;
+
+            str+= `<span class="ballItem ballItem${i}"  style="background-image:url('${balls[i].src}');width:${w}px;height:${h}px;left:${l}px;bottom:${b}px;transform:translate3d(0,0,0) rotate3d(0,0,1,0deg);transition:${time}s ease;"></span>`;
+        }
+
+        for(var i=0;i<balls.length;i++){
+            w = Math.floor(balls[i].w/this.datas.multiple);
+            h = Math.floor(balls[i].h/this.datas.multiple);
+            l = Math.floor(Math.random()*( box.clientWidth - w));
+            b = Math.floor(Math.random()*30)-700;
+            
+            time  = 5 + Math.random()*i*0.3;
+
+            str+= `<span class="ballItem ballItem${i}"  style="background-image:url('${balls[i].src}');width:${w}px;height:${h}px;left:${l}px;bottom:${b}px;transform:translate3d(0,0,0) rotate3d(0,0,1,0deg);transition:${time}s ease;"></span>`;
+        }
+
+        for(var i=0;i<balls.length;i++){
+            w = Math.floor(balls[i].w/this.datas.multiple);
+            h = Math.floor(balls[i].h/this.datas.multiple);
+            l = Math.floor(Math.random()*( box.clientWidth - w));
+            b = Math.floor(Math.random()*30)-800;
+            
+            time  = 5 + Math.random()*i*0.3;
+
+            str+= `<span class="ballItem ballItem${i}"  style="background-image:url('${balls[i].src}');width:${w}px;height:${h}px;left:${l}px;bottom:${b}px;transform:translate3d(0,0,0) rotate3d(0,0,1,0deg);transition:${time}s ease;"></span>`;
+        }
+
+        box.innerHTML = str;
+    }
 
     //气球往上飞
     flyballs(){
@@ -352,7 +412,7 @@ class Motion{
             if(i < balls.length/2){
                 y = -1*Math.floor(box.offsetHeight+300);
             }else{
-                y = -1*Math.floor(box.offsetHeight+300) - 600;
+                y = -1*Math.floor(box.offsetHeight+300) - 1080;
                 if(y > - (box.offsetHeight - balls[i] )){
                     y = - (box.offsetHeight - balls[i] ) - 100;
                 }
@@ -360,7 +420,7 @@ class Motion{
             
             z = Math.floor(20*Math.random()*(Math.random()>0.5 ? 1 : -1));
             a =  Math.floor(120*Math.random()*(Math.random()>0.5 ? 1 : -1));
-            balls[i].style[this.tool.prefixBrowserVersion('transform')] =`translate3d(${x}px,${y}px,${z}px) rotate3d(0,0,1,${a}deg)`;
+            balls[i].style[this.tool.prefixBrowserVersion('transform')] =`translate3d(${x}px,-2000px,${z}px) rotate3d(0,0,1,${a}deg)`;
         }
     }
 
@@ -390,6 +450,8 @@ class Motion{
         canvas.setAttribute('width',w);
         canvas.setAttribute('height',h);
 
+       // mplay.click();
+
         var ctx = canvas.getContext('2d');
         video.play();
         
@@ -404,7 +466,5 @@ class Motion{
                 ctx.drawImage(this,0,0,w,h);
             },ts)
         })
-
-       
     }
 }

@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./css/keyframes.css">
     <link rel="stylesheet" type="text/css" href="./css/home.css">
     
+
 </head>
 <body>
     <div class="contaner" id="container">
@@ -18,20 +19,14 @@
             <div class="gameContent" id="gameContent">
                 
                 <!-- logo canvas card -->    
-                <div class="logocanvasbox" id="logocanvasbox">
-                    <canvas id="logoparticle"></canvas>
-                    <video id="logoVideo" style="display: none;">
-                        <source src="./video/logo.mp4" type="video/mp4" />
-                        <source src="./video/logo.Ogg" type="video/ogg" />
-                    </video>
-                </div>
+                <div class="logocanvasbox" id="logocanvasbox"></div>
 
                 <!-- balloon box -->                
                 <div class="balloonbox" id="balloonbox">
                     <!-- <span class="ballItem"></span> -->
                 </div>
                      
-
+                     
                 <!-- banner card box -->
                 <div class="cardbox" id="cardbox">
                     <span class="boxLogo" id="boxLogo">
@@ -40,23 +35,43 @@
                     </span>
                     <ul id="cardboxlists">
                         <li class="cardboxitem cardboxitem-1">
-                            <img src="./images/light_se.png" class="cardboxitem-light" />
+                            <img class="cardboxitem-light" />
                         </li>
                         <li class="cardboxitem cardboxitem-2">
-                            <img src="./images/light_se.png" class="cardboxitem-light" />
+                            <img class="cardboxitem-light" />
                         </li>
                         <li class="cardboxitem cardboxitem-3">
-                            <img src="./images/light_se.png" class="cardboxitem-light" />
+                            <img class="cardboxitem-light" />
                         </li>
                         <li class="cardboxitem cardboxitem-4">
-                            <img src="./images/light_se.png" class="cardboxitem-light" />
+                            <img class="cardboxitem-light" />
                         </li>
                         <li class="cardboxitem cardboxitem-5"></li>
                     </ul>    
                 </div>
-
             </div>
+             
+
+
             
+            <!-- 帷幕遮罩 -->
+            <div class="weimu_wrap" id="weimu_wrap">
+                
+                <!-- 帷幕 -->
+                <div class="mubu_up"></div>
+                
+
+                <!-- 左侧 帷幕 -->
+                <div class="mubu_left"></div>
+                
+
+                <!-- 右测 帷幕 -->
+                <div class="mubu_right"></div>
+                
+                
+            </div>
+
+
 
 
             <!-- 装饰物品 -->
@@ -75,9 +90,6 @@
                 </div>
                 
 
-                
-                
-
                 <!-- 剪花层 -->
                 <div class="flowerContainer">
                     
@@ -91,19 +103,19 @@
                         <!-- 静态分段隐藏层 -->
                         <div class="fc-static-box" id="fcStaticBox">
                             <ul class="staticWrap">
-                                <li class="secItem secItem1"><image src="./images/flower_left.png"></li>
-                                <li class="secItem secItem2"><image src="./images/flower_middle1.png"></li>
-                                <li class="secItem secItem3"><image src="./images/flower_middle3.png"></li>
-                                <li class="secItem secItem4"><image src="./images/flower_middle1.png"></li>
-                                <li class="secItem secItem5"><image src="./images/flower_middle3.png"></li>
-                                <li class="secItem secItem6"><image src="./images/flower_middle1.png"></li>
-                                <li class="secItem secItem7"><image src="./images/flower_right.png"></li>
+                                <li class="secItem secItem1"><image src="./images/flowers/1.png"></li>
+                                <li class="secItem secItem2"><image src="./images/flowers/2.png"></li>
+                                <li class="secItem secItem3"><image src="./images/flowers/3.png"></li>
+                                <li class="secItem secItem4"><image src="./images/flowers/2.png"></li>
+                                <li class="secItem secItem5"><image src="./images/flowers/3.png"></li>
+                                <li class="secItem secItem6"><image src="./images/flowers/2.png"></li>
+                                <li class="secItem secItem7"><image src="./images/flowers/7.png"></li>
                             </ul>
                         </div>
 
 
                         <!-- 运动层 -->
-                        <div class="fc-motion" id="flowerMotionBox">
+                        <div class="fc-motion" id="flowerMotionBox" style="display: none">
                             <div class="fc-motion-line"></div>
                             <ul class="fc-motion-flowers">
                                 <li class="fcItem fcItem1"><img src="./images/flower2.png" /></li>
@@ -146,10 +158,32 @@
                 </div>   
 
             </div>
+            
+            
+            <!-- video wrap-->
+            <div class="videoWrap" id="videoWrap" style="display: none">
+                <canvas id="logoparticles"></canvas>
+            </div>
 
             
+
+            <!-- 视频第一帧 -->
+            <div class="videoCanvas" id="videoCanvas" style="display: none"></div>
+            
+
+            <!-- 开幕式标语 -->
+            <div class="titleBox">
+                <img src="./images/t_z.png" class="timg" />
+                <img src="./images/t_e.png" class="bimg" />
+            </div>
+            
+
+            <!-- 爆炸烟花层 -->
+            <div class="yanhuaBox"></div>
+            
+
             <!-- 逻辑交互层 -->
-            <div class="alternationGame" id="alternationGame">
+            <div class="alternationGame" id="alternationGame" >
                   <div class="alterBox alterBox-1"></div>
                   <div class="alterBox alterBox-2"></div>
                   <div class="alterBox alterBox-3"></div>
@@ -157,6 +191,22 @@
                   <div class="alterBox alterBox-5"></div>
                   <div class="alterBox alterBox-6"></div>
             </div>
+            
+
+            <!-- 帷幕拉条 -->
+            <div class="windowLine" id="windowLine" ></div>    
+
+
+            <!-- 百分比进度条 -->
+            <div class="progressWrap" style="display: none">
+                <div class="progressBox" id="progressBox">
+                    <div class="progressLine">
+                        <span class="progressContent"></span>
+                    </div>
+                    <span class="preogressText">0%</span>
+                </div>
+            </div>
+            
             
 
         </div>
@@ -167,11 +217,15 @@
 <script type="text/javascript" src="./js/tool.class.js"></script> 
 <script type="text/javascript" src="./js/data.class.js"></script>
 <script type="text/javascript" src="./js/motion.class.js"></script>
-<script type="text/javascript" src="./js/alternation.class.js"></script>  
+<script type="text/javascript" src="./js/alternation.class.js"></script>
+<script type="text/javascript" src="./js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="./js/jquery.fireworks.js"></script>
+
 <script type="text/javascript">
     var motion = new Motion(true);
     new Alternation(motion);
 </script>
+
 
 
 </body>
